@@ -19,7 +19,7 @@ body{
 
     background: rgb(255,255,255);
     background: rgb(249,228,86);
-    background: linear-gradient(135deg, rgba(249,228,86,1) 0%, rgba(235,57,74,1) 33%, rgba(148,74,148,1) 66%, rgba(44,39,113,1) 100%);
+    background: linear-gradient(135deg, rgba(249,228,86,1) 0%, rgba(235,57,74,1) 50%, rgba(44,39,113,1) 100%);
 
 
     /* background-image: url("./cool-background.svg");
@@ -59,7 +59,7 @@ nav a{
     height: 40px;
     padding: 25px;
     border-radius: 20px;
-    background-color: rgba(255, 255, 255,0.6);
+    background-color: rgba(0, 0, 0, 0.7);
 
 
     font-family: outfit;
@@ -75,7 +75,7 @@ nav a{
 
 nav a:hover{
     /* color:rgb(236, 236, 236) */
-    background-color: rgba(255, 255, 255,0.8);
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 #login{
@@ -102,50 +102,43 @@ main{
 
     overflow-y: scroll;
 
-    /* background: rgb(238,238,238);
-    background: linear-gradient(135deg, rgba(238,238,238,1) 0%, rgba(250,250,250,1) 100%); */
+    /* background-color: red; */
 }
-
-/* main:first{
-    margin-top: 48px;
-} */
 
 
 .blogButton{
     display: inline-block;
     cursor: pointer;
-    background-color: rgba(255, 255, 255,0.6);
-    /* background-image: url('./img2.jpg'); */
-    /* color:white; */
-    /* margin:32px 32px 0px 0px; */
-
+    background-color: rgba(0, 0, 0, 0.7);
     width: fit-content;
     height: fit-content;
-    /* height: 125px; */
-    /* border: 2px solid black; */
+
     border-radius: 20px;
 
     padding: 50px;
+    transition: 250ms;
 
+}
+
+.blogButton:hover{
+    background-color: rgba(0, 0, 0, 0.8);
 
 }
 
 
 
-
 .blogTitle{
+    justify-self: center;
+
+    width: min-content;
     line-height: 125px;
     margin: 0px;
-    font-size: 120px;
+    font-size: 115px;
     color:white;
     font-family: "Outfit";
     font-weight: 800;
     text-align: center;
     text-transform: uppercase;
-    /* width: min-content; */
-    /* line-clamp: 2; */
-    /* line-break: loose; */
-
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -154,21 +147,21 @@ main{
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
 
-    /* drop:filter */
 
-    /* filter: drop-shadow(0 0 55px white); */
 
-    /* text-shadow: 4px 4px 3px rgba(0, 0, 0, 1); */
+    filter: saturate(2);
+    opacity: 0.8;
+
+
+    transition: 250ms;
+
 }
 
 .blogDesc{
     font-family: "Outfit";
-    /* font-weight: 900; */
     text-align: center;
     margin:0px;
-    /* color:black; */
     color:rgb(255, 255, 255);
-    /* color:white; */
     transition: 250ms;
 
 }
@@ -179,3 +172,8 @@ main{
     word-spacing: 5px;
 }
 
+
+.blogButton:hover .blogTitle{
+    opacity: 1;
+    letter-spacing: var(--title-letter-spacing);
+}

@@ -1,28 +1,47 @@
-let buttons=document.getElementsByClassName("blogTitle")
+let buttons=document.getElementsByClassName("blogTitle");
+let turcja=document.getElementsByClassName("turcja")
 
-console.log(buttons)
 let i=1;
 
 
 
 
+
 window.addEventListener('load', function () {
+  // console.log(buttons[6].offsetWidth)
 
-    // buttons[0].setAttribute("style", "background-color:red;");
+  for (let element of buttons) {
+    element.setAttribute("style",`background-image: url('./img${i}.jpg');`)
+    element.style.setProperty('--title-letter-spacing', calculateLetterSpacing(element));
+    i++;
 
-    for (let element of buttons) {
-        element.setAttribute("style",`background-image: url('./img${i}.jpg');`)
-        // element.setAttribute("style", "background-color:red;");
+
     
-        // console.log(element.getAttribute('style:width;'))
-        i++;
-    }
+    element.addEventListener("click", async function (e) {
+      console.log(this.offsetWidth);
+      let pierwsy=this.offsetWidth
+      await sleep(1000)
+      console.log(this.offsetWidth);
+      let drugi=this.offsetWidth
+      console.log(pierwsy-drugi)
+
+    });
+
+  }
 
   })
 
-// let x=buttons[0].getAttribute("width")
-
-// console.log(x)
 
 
 
+
+function calculateLetterSpacing(x){
+  
+  return `${32/x.innerText.length}px`
+}
+
+
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
