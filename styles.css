@@ -129,11 +129,15 @@ main{
 
 .blogTitle{
     justify-self: center;
-
     width: min-content;
-    line-height: 125px;
     margin: 0px;
-    font-size: 115px;
+
+    line-height: 70px;
+    font-size: 70px;
+  
+
+    /* line-height: 125px;
+    font-size: 120px; */
     color:white;
     font-family: "Outfit";
     font-weight: 800;
@@ -147,13 +151,14 @@ main{
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
 
-
+    line-clamp: 2;
 
     filter: saturate(2);
     opacity: 0.8;
 
 
     transition: 250ms;
+
 
 }
 
