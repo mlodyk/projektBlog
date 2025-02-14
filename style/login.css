@@ -27,7 +27,15 @@ body{
 
 .signUp{
     position: relative;
-    color:white;
+    color:black;
+
+}
+
+.signUp input{
+background-color: rgb(243, 243, 243);
+}
+.signUp input:focus{
+    background-color: rgb(223, 223, 223);
 
 }
 
@@ -38,13 +46,15 @@ body{
     content: "";
     position: absolute;
     inset: 0;
-    mix-blend-mode: hue;
+    /* mix-blend-mode: hue; */
     z-index: -1;
 }
 
 
+
 .logIn {
     position: relative;
+    color:white;
 
 }
 
@@ -141,9 +151,18 @@ input:focus + label
     background-color: rgb(255, 255, 255,0.7);
     transition: 250ms;
     bottom: 30px;
-    color:rgb(255, 255, 255);
+
+}
+
+.signUp .button{
+    background-color: #E8466E;
+    color:white;
 }
 
 .button:hover{
     background-color: rgb(255, 255, 255,0.8);
+}
+
+.signUp .button:hover{
+    background-color: #ca2f56;
 }
