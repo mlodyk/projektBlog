@@ -16,29 +16,136 @@ body{
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 80px;
+    /* gap: 80px; */
     background-image: url("../loginBackground.png");
 }
 
 
 .signUp, .logIn{
-    height: 500px;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    height: 600px;
+    /* background-color: rgba(255, 255, 255, 0.8); */
+    width: 600px;
+
+    
 }
 
 .signUp{
-    width: 1100px;
+    position: relative;
 
 }
 
-.logIn{
-    width: 500px;
+.signUp::before {
+    border-radius: 20px 0px 0px 20px;
+    background: rgba(255, 255, 255,1);
+
+    content: "";
+    position: absolute;
+    inset: 0;
+    mix-blend-mode: hue;
+    z-index: -1;
 }
+
+
+.logIn {
+    position: relative;
+
+}
+
+.logIn::before {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 0px 20px 20px 0px;
+
+    content: "";
+    position: absolute;
+    inset: 0;
+    mix-blend-mode: overlay;
+    z-index: -1;
+}
+
 
 .title{
     font-family: sarabun;
     font-weight: 900;
     font-size: 40px;
     text-align: center;
+
+    margin: 0px;
+    margin-top: 60px;
+
 }
+
+.inputContainer{
+    display: flex;
+    flex-direction: column;
+
+    align-self: center;
+    width: 90%;
+    height: min-content;
+    gap: 20px;
+    /* background-color: red; */
+}
+
+.inputContainer section{
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+input{
+    border-radius: 20px;
+    border-width: 0px;
+    height: 50px;
+    background-color: rgba(255, 255, 255,0.7);
+
+    padding-left: 20px;
+
+    font-family: sarabun;
+    font-weight: 900;
+    font-size: 24px;
+
+}
+
+input:focus{
+    outline: 0px;
+    background-color: rgba(255, 255, 255,0.8);
+
+}
+
+label{
+    font-family: sarabun;
+    font-weight: 900;
+    font-size: 24px;
+
+    transition: 250ms;
+    margin-left: 20px;
+}
+
+
+input:focus + label 
+{
+    letter-spacing: 3px;
+}
+
+
+
+.button{
+    cursor: pointer;
+
+    align-self: center;
+    font-family: sarabun;
+    font-weight: 900;
+    font-size: 40px;
+
+    border-radius: 20px;
+    border: 0px;
+    height: 70px;
+    width: 200px;
+    background-color: white;
+    margin-bottom: 20px;
+
+    mix-blend-mode: overlay;
+
+}
+
