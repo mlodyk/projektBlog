@@ -1,8 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
-*{
-    /* user-select: none; */
-
-}
 
 html{
     width: 100%;
@@ -16,7 +12,6 @@ body{
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    /* gap: 80px; */
     background-image: url("../loginBackground.png");
 }
 
@@ -24,9 +19,7 @@ body{
 .signUp, .logIn{
     display: flex;
     flex-direction: column;
-    /* justify-content: space-between; */
     height: 600px;
-    /* background-color: rgba(255, 255, 255, 0.8); */
     width: 600px;
 
     
@@ -34,6 +27,7 @@ body{
 
 .signUp{
     position: relative;
+    color:white;
 
 }
 
@@ -78,6 +72,7 @@ body{
 }
 
 .inputContainer{
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
 
@@ -85,7 +80,6 @@ body{
     width: 90%;
     height: min-content;
     gap: 20px;
-    /* background-color: red; */
 }
 
 .inputContainer section{
@@ -104,6 +98,7 @@ input{
     font-family: sarabun;
     font-weight: 900;
     font-size: 24px;
+    transition: 250ms;
 
 }
 
@@ -132,6 +127,7 @@ input:focus + label
 
 .button{
     cursor: pointer;
+    position: absolute;
 
     align-self: center;
     font-family: sarabun;
@@ -142,10 +138,12 @@ input:focus + label
     border: 0px;
     height: 70px;
     width: 200px;
-    background-color: white;
-    margin-bottom: 20px;
-
-    mix-blend-mode: overlay;
-
+    background-color: rgb(255, 255, 255,0.7);
+    transition: 250ms;
+    bottom: 30px;
+    color:rgb(255, 255, 255);
 }
 
+.button:hover{
+    background-color: rgb(255, 255, 255,0.8);
+}
