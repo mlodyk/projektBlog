@@ -158,25 +158,55 @@ main{
 
 
 .blogButton{
+
+    overflow: hidden;
     position: relative;
-    display: inline-block;
+    display: flex;
     cursor: pointer;
-    width: fit-content;
-    height: fit-content;
+    /* width: fit-content; */
+    height: 500px;
+    /* width: var(--button-width); */
+    width: min-content;
+    max-width: 880px;
 
     border-radius: 20px;
+    justify-content: center;
+    align-items: center;
 
-
-    padding: 50px;
+    /* padding: 50px; */
     transition: 250ms;
 
+
+
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    
+    color:white;
+    font-family: "Outfit";
+    font-weight: 900;
+    text-align: center;
+    text-transform: uppercase;
+
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+
+}
+
+img{
+    position: relative;
+    /* max-height: 880px; */
+    height: 100%;
+
+    opacity: 0;
 }
 
 .blogButton::before {
     border-radius: 20px;
     background-color: rgba(255, 255, 255, 0.8);
-
-
     content: "";
     position: absolute;
     inset: 0;
@@ -186,7 +216,9 @@ main{
 
 
 .blogButton:hover{
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: red;
+    mix-blend-mode: normal;
+
     /* mix-blend-mode: overlay; */
 
 }
@@ -194,46 +226,32 @@ main{
 
 
 .blogTitle{
-    justify-self: center;
-    /* width: min-content; */
+    max-width: 100%;
     margin: 0px;
 
-    line-height: 70px;
-    font-size: 70px;
-  
+    /* word-break: ; */
+    text-align: center;
+    vertical-align: middle;
+
+    height: fit-content;
+    line-height: 75%;
+    /* font-size: 200px; */
+    
 
     /* line-height: 125px;
     font-size: 120px; */
-    color:white;
-    font-family: "Outfit";
-    font-weight: 800;
-    text-align: center;
-    text-transform: uppercase;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+
+
+    /* line-clamp: 2; */
+
+    /* filter: saturate(2); */
+    /* opacity: 0.8; */
     
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
-
-    line-clamp: 2;
-
-    filter: saturate(2);
-    opacity: 0.8;
-
 
     transition: 250ms;
 
-
-}
-
-.blogDesc{
-    font-family: "Outfit";
-    text-align: center;
-    margin:0px;
-    color:rgb(0, 0, 0);
-    transition: 250ms;
+    font-size: var(--title-font-size);
+    width: var(--title-width);
 
 }
 

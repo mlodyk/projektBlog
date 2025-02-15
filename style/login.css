@@ -22,13 +22,15 @@ body{
     height: 600px;
     width: 600px;
 
+    position: relative;
+
     
 }
 
 .signUp{
-    position: relative;
     color:black;
-
+    background: rgba(255, 255, 255,1);
+    border-radius: 20px 0px 0px 20px;
 }
 
 .signUp input{
@@ -39,25 +41,10 @@ background-color: rgb(243, 243, 243);
 
 }
 
-.signUp::before {
-    border-radius: 20px 0px 0px 20px;
-    background: rgba(255, 255, 255,1);
-
-    content: "";
-    position: absolute;
-    inset: 0;
-    /* mix-blend-mode: hue; */
-    z-index: -1;
-}
-
-
 
 .logIn {
-    position: relative;
     color:white;
-
 }
-
 .logIn::before {
     background: rgba(255, 255, 255, 0.8);
     border-radius: 0px 20px 20px 0px;
