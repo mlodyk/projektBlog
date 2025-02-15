@@ -10,15 +10,15 @@ window.addEventListener('load', async function () {
   // console.log(buttons[6].offsetWidth)
 
   for (let element of buttons) {
-    element.setAttribute("style",`background-image: url('./zdjecia2/img${i}.jpg');`)
+    // element.setAttribute("style",`background-image: url('./zdjecia2/img${i}.jpg');`)
     element.style.setProperty('--title-letter-spacing', calculateLetterSpacing(element));
     changeFontSize(element)
     i++;
 
   }
-  while (images.length > 0) {
-    images[0].parentNode.removeChild(images[0]);
-}
+  // while (images.length > 0) {
+  //   images[0].parentNode.removeChild(images[0]);
+  // }
 
 
   })
@@ -34,30 +34,16 @@ function changeFontSize(element){
 
 
 function calculateLetterSpacing(x){
-  console.log(x.innerText)
 
-  return `${32/x.innerText.length}px`
+  return `${(32+x.offsetWidth)/x.offsetWidth}`
 }
 
 
 function calculateFontSize(element){
-  // let size=240;  
 
-
-  // var dimension, image;
-
-  // image = new Image();
-  // console.log(element.style.backgroundImage)
-
-  // image.onload = function() {
-  //     dimension = {
-  //         width: image.naturalWidth,
-  //         height: image.naturalHeight
-  //     };
-  //     console.log(dimension);
-  // };
   x=element.offsetWidth
   y=element.offsetHeight
+
 
   // element.children[0].style.width=x;
   element.children[0].style.setProperty('--title-width', x);
@@ -67,60 +53,105 @@ function calculateFontSize(element){
 
   let lines
   let size
-  if(x>=450){
-    let text=splitWordsna2(element.children[0].innerText)[0]
-    lines=splitWordsna2(element.children[0].innerText)[1]
-    console.log("na 2")
+  let text
+  let gowno
+  if(x>=y){
+    [text,lines]=splitWordsna2(element.children[0].innerText)
+    // lines=splitWordsna2(element.children[0].innerText)[1]
+    // console.log("na 2")
+    gowno=" na 2";
 
     // lines=2
-    size=element.innerText.length/lines*(y/x)+2
-    element.children[0].innerText=text
-
+    size=element.innerText.length/lines*0.5+1.3
 
   }else{  
-    console.log("na 3")
 
-    let text=splitWordsna3(element.children[0].innerText)[0]
-    lines=splitWordsna3(element.children[0].innerText)[1]
-    console.log(lines)
+    // console.log("na 3")
+    gowno=" na 3";
+
+    [text,lines]=splitWordsna3(element.children[0].innerText)
+    // lines=splitWordsna3(element.children[0].innerText)[1]
     // lines=3
-    size=element.innerText.length/lines*(x/y)+0.3
-    element.children[0].innerText=text
+    size=element.innerText.length/lines*(x/y)+0.7
+
 
   }
 
-
-
+  element.children[0].innerText=text
   size=x/size
-  console.log("length: "+element.innerText.length)
-  console.log("najdluzsza w lini: "+element.innerText.length/lines)
-  console.log(size)
-  return size+"px";
-  // return "430%"
+
+  // console.log("length: "+text.length)
+  console.log(text)
+  console.log("width: "+x)
+  console.log("height: "+y)
+  // console.log("lines: "+lines)
+  // console.log("dzieli sie: "+gowno)
+  // console.log("font size: "+size)
+  console.log("-----------------------------")
+  // console.log("length: "+element.innerText.length)
+  // console.log("najdluzsza w lini: "+element.innerText.length/lines)
+  // console.log(size)
+  
+  return (size>=y*0.47?y*0.47:size)+"px"
+  // return size+"px";
+  // return "240px"
 }
 
 function splitWordsna3(text) {
-  let totalParts = 0; // Licznik wszystkich części
-  let words = text.split(" ");
-  
-  let transformedWords = words.map(word => {
-      if (!isNaN(word) || word.length < 3 || word.length>7) {
-          totalParts++; // Liczymy słowo jako jedną część
-          return word;
-      }
+  let words = text.split(" "); // Dzielimy tekst na słowa
+  let transformedWords = [];
+  let totalParts = 0;
 
-      let len = word.length;
+  // Funkcja do dzielenia słowa na 3 równe części
+  function splitIntoThree(word) {
+    let len = word.length;
+    let partLength = Math.ceil(len / 3); // Długość każdej części
+    let part1 = word.slice(0, partLength);
+    let part2 = word.slice(partLength, 2 * partLength);
+    let part3 = word.slice(2 * partLength);
+    return [part1, part2, part3];
+  }
 
-      if (len < 5) {
-          totalParts += 2; // Podział na 2 części
-          return word.slice(0, Math.ceil(len / 2)) + " " + word.slice(Math.ceil(len / 2));
+  // Funkcja do dzielenia słowa na 2 części
+  function splitIntoTwo(word) {
+    let len = word.length;
+    let middle = Math.ceil(len / 2);
+    let part1 = word.slice(0, middle);
+    let part2 = word.slice(middle);
+    return [part1, part2];
+  }
+
+  // Przetwarzamy każde słowo
+  transformedWords = words.map(word => {
+    if (words.length === 1) {
+      // Dzielimy jedno słowo na 3 części
+      if (word.length < 4) {
+        totalParts += 1; // Nie dzielimy krótkich słów
+        return word;
       } else {
-          totalParts += 3; // Podział na 3 części
-          let part1 = word.slice(0, Math.ceil(len / 3));
-          let part2 = word.slice(Math.ceil(len / 3), Math.ceil(2 * len / 3));
-          let part3 = word.slice(Math.ceil(2 * len / 3));
-          return part1 + " " + part2 + " " + part3;
+        let parts = splitIntoThree(word);
+        totalParts += parts.length;
+        return parts.join(" ");
       }
+    } else {
+      // Dzielimy każde słowo na 2 części (chyba że krótsze niż 4 litery)
+      if (word.length < 4) {
+        totalParts += 1; // Nie dzielimy krótkich słów
+        return word;
+      } else {
+        // Dla "streetwear" dzielimy na 3 części
+        if (word === "streetwear") {
+          let parts = splitIntoThree(word);
+          totalParts += parts.length;
+          return parts.join(" ");
+        } else {
+          // Dla pozostałych słów dzielimy na 2 części
+          let parts = splitIntoTwo(word);
+          totalParts += parts.length;
+          return parts.join(" ");
+        }
+      }
+    }
   });
 
   return [transformedWords.join(" "), totalParts];
@@ -131,8 +162,13 @@ function splitWordsna2(text) {
   let words = text.split(" ");
 
   let transformedWords = words.map(word => {
-      if (!isNaN(word) || word.length < 4) {
+      if (!isNaN(word) || /\d/.test(word) || word.length<=6) { // Nie dzielimy liczb ani słów zawierających cyfry
           totalParts++; // Liczymy słowo jako jedną część
+          return word;
+      }
+
+      if (word.length < 4) {
+          totalParts++; // Krótkie słowa pozostają bez zmian
           return word;
       }
 

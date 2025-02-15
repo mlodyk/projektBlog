@@ -158,13 +158,14 @@ main{
 
 
 .blogButton{
+    /* opacity: 0.9; */
 
     overflow: hidden;
     position: relative;
     display: flex;
     cursor: pointer;
     /* width: fit-content; */
-    height: 500px;
+    height: 350px;
     /* width: var(--button-width); */
     width: min-content;
     max-width: 880px;
@@ -177,22 +178,15 @@ main{
     transition: 250ms;
 
 
+    /* background-color: rgba(0, 0, 0, 0.9); */
 
 
-    background-repeat: no-repeat;
+    /* background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-
-    
-    color:white;
-    font-family: "Outfit";
-    font-weight: 900;
-    text-align: center;
-    text-transform: uppercase;
-
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
+    -webkit-background-clip: text; */
 
 }
 
@@ -200,11 +194,15 @@ img{
     position: relative;
     /* max-height: 880px; */
     height: 100%;
+    z-index: -3;
+    /* filter: saturate(14); */
+    opacity: 1;
+    /* mask-image: linear-gradient(to bottom, rgb(255, 255, 255), transparent); */
 
-    opacity: 0;
+    
 }
 
-.blogButton::before {
+/* .blogButton::before {
     border-radius: 20px;
     background-color: rgba(255, 255, 255, 0.8);
     content: "";
@@ -212,13 +210,13 @@ img{
     inset: 0;
     mix-blend-mode: overlay;
     z-index: -1;
-}
+} */
 
 
 .blogButton:hover{
-    background-color: red;
-    mix-blend-mode: normal;
-
+    /* background-color: rgba(0, 0, 0,0.5); */
+    /* scale: var(--title-letter-spacing); */
+    /* transform: sc; */
     /* mix-blend-mode: overlay; */
 
 }
@@ -226,9 +224,17 @@ img{
 
 
 .blogTitle{
+    color:white;
+    /* word-spacing: -130%; */
+    font-family: "Outfit";
+    font-weight: 900;
+    text-align: center;
+    text-transform: uppercase;
+    /* mix-blend-mode: soft-light; */
+    width: fit-content;
     max-width: 100%;
     margin: 0px;
-
+    position: absolute;
     /* word-break: ; */
     text-align: center;
     vertical-align: middle;
@@ -249,20 +255,14 @@ img{
     
 
     transition: 250ms;
-
+    opacity: 0.2;
+    scale: 0.8;
     font-size: var(--title-font-size);
-    width: var(--title-width);
+    /* width: var(--title-width); */
 
 }
-
-
-.blogButton:hover .blogDesc{
-    font-weight: 600;
-    word-spacing: 5px;
-}
-
 
 .blogButton:hover .blogTitle{
     opacity: 1;
-    letter-spacing: var(--title-letter-spacing);
+    scale: 1;
 }
