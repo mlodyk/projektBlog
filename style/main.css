@@ -158,93 +158,148 @@ main{
 
 
 .blogButton{
+    /* opacity: 0.9; */
+    /* border:5px white solid; */
+    overflow: hidden;
     position: relative;
-    display: inline-block;
+    display: flex;
     cursor: pointer;
-    width: fit-content;
-    height: fit-content;
+    /* width: fit-content; */
+    height: 450px;
+    /* width: var(--button-width); */
+    /* width: 450px; */
+    /* width: min-content; */
+    /* max-width: 880px; */
 
     border-radius: 20px;
+    justify-content: center;
+    align-items: center;
 
-
-    padding: 50px;
+    /* padding: 50px; */
     transition: 250ms;
 
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+
+
+    /* letter-spacing: -1px; */
+    color:white;
+    font-family: "Outfit";
+    font-weight: 900;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 0px;
+
+    /* word-break: ; */
+    text-align: center;
+    vertical-align: middle;
+
+    line-height: 75%;
+    /* line-height: 110%; */
+    font-size: var(--title-font-size);
 }
 
+
+
 .blogButton::before {
+    background-image: inherit;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     border-radius: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
-
-
+    opacity: 0;
+    background-color: rgba(255, 255, 255, 1);
     content: "";
     position: absolute;
     inset: 0;
+    /* mix-blend-mode: overlay; */
+    z-index: -1;
+    transition: 250ms;
+}
+.blogButton::after{
+    border-radius: 20px;
+    /* opacity: 0; */
+    background-color: rgba(255, 255, 255, 1);
+    content: "";
+    position: absolute;
+
+    inset: 0;
     mix-blend-mode: overlay;
     z-index: -1;
+    transition: 250ms;
+}
+.blogButton:hover:after{
+    opacity: 0;
 }
 
 
+.blogButton:hover::before{
+    opacity: 1;
+}
 .blogButton:hover{
-    background-color: rgba(255, 255, 255, 0.8);
+    /* background-color: rgba(0, 0, 0,0.5); */
+    /* scale: var(--title-letter-spacing); */
+    /* transform: sc; */
     /* mix-blend-mode: overlay; */
-
+    /* background-clip: unset; */
+    -webkit-text-fill-color: white;
+    /* -webkit-background-clip: unset; */
 }
 
 
 
 .blogTitle{
-    justify-self: center;
-    /* width: min-content; */
-    margin: 0px;
-
-    line-height: 70px;
-    font-size: 70px;
-  
-
-    /* line-height: 125px;
-    font-size: 120px; */
     color:white;
     font-family: "Outfit";
-    font-weight: 800;
+    font-weight: 900;
     text-align: center;
     text-transform: uppercase;
+    width: fit-content;
+    height: 100%;
+    width: fit-content;
+    margin: 0px;
+    position: absolute;
+    /* word-break: ; */
+    text-align: center;
+    vertical-align: middle;
+
+    height: fit-content;
+    /* line-height: 75%; */
+    line-height: 150%;
+
+
+
+    /* font-size: 200px; */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    
-    background-clip: text;
+    /* background-clip: text;
     -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
+    -webkit-background-clip: text; */
+    /* line-height: 125px;
+    font-size: 120px; */
 
-    line-clamp: 2;
 
-    filter: saturate(2);
-    opacity: 0.8;
+    /* line-clamp: 2; */
 
+    /* filter: saturate(2); */
+    /* opacity: 0.8; */
+    
 
     transition: 250ms;
-
-
-}
-
-.blogDesc{
-    font-family: "Outfit";
-    text-align: center;
-    margin:0px;
-    color:rgb(0, 0, 0);
-    transition: 250ms;
+    /* opacity: 0.2;
+    scale: 0.8; */
+    font-size: var(--title-font-size);
+    /* width: var(--title-width); */
 
 }
 
-
-.blogButton:hover .blogDesc{
-    font-weight: 600;
-    word-spacing: 5px;
-}
-
-
-.blogButton:hover .blogTitle{
+/* .blogButton:hover .blogTitle{
     opacity: 1;
+    scale: 1;
     letter-spacing: var(--title-letter-spacing);
-}
+} */
