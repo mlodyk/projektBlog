@@ -1,11 +1,10 @@
 <?php
 session_start();
 
-// Sprawdzamy, czy użytkownik jest zalogowany
 if (isset($_SESSION['user_name'])) {
     $user_name = $_SESSION['user_name'];
 } else {
-    $user_name = null;  // Jeśli użytkownik nie jest zalogowany
+    $user_name = null; 
 }
 ?>
 
