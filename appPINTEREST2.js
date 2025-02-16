@@ -1,24 +1,39 @@
 let buttons=document.getElementsByClassName("blogButton");
-// let titles=document.getElementsByClassName("blogTitle");
-let images=document.getElementsByClassName("image")
+
 let i=1;
 
 
 
 
 window.addEventListener('load', async function () {
-  // console.log(buttons[6].offsetWidth)
 
   for (let element of buttons) {
-    // element.setAttribute("style",`background-image: url('./zdjecia2/img${i}.jpg');`)
+    let title=element.children[0]
+    element.setAttribute("style",`background-image: url('./zdjecia2/img${i}.jpg');`)
     element.style.setProperty('--title-letter-spacing', calculateLetterSpacing(element));
-    changeFontSize(element)
+
+
+    const backgroundUrl = getComputedStyle(element).backgroundImage.slice(4, -1).replace(/"/g, "");
+    const img = new Image();
+    img.onload = function() {
+      console.log("------------------------------")
+      // console.log("XD")
+      // element.style.width=img.width+'px'
+      // element.style.aspectRatio=`${img.width}/${img.height}`
+      element.style.aspectRatio=`1/2`
+
+      // console.log("test: "+img.width)
+      // console.log("test: "+element.offsetWidth)
+      changeFontSize(element)
+
+    };
+    img.src = backgroundUrl;
+
+
+
     i++;
 
   }
-  // while (images.length > 0) {
-  //   images[0].parentNode.removeChild(images[0]);
-  // }
 
 
   })
@@ -27,15 +42,16 @@ window.addEventListener('load', async function () {
 
 
 function changeFontSize(element){
-  element.style.setProperty('--title-font-size', calculateFontSize(element));
+  // element.style.setProperty('--title-font-size', calculateFontSize(element));
 
+  element.style.fontSize=calculateFontSize(element)
   // console.log(element.offsetWidth)
 }
 
 
 function calculateLetterSpacing(x){
 
-  return `${(32+x.offsetWidth)/x.offsetWidth}`
+  return `${32/x.innerText.length}px`
 }
 
 
@@ -45,56 +61,80 @@ function calculateFontSize(element){
   y=element.offsetHeight
 
 
-  // element.children[0].style.width=x;
-  // element.children[0].style.setProperty('--title-width', x);
-  // element.style.setProperty('--button-width', x);
-
-
-
   let lines
+  let longest
   let size
   let text
-  let gowno
-  if(x>=y){
-    [text,lines]=splitWordsna2(element.children[0].innerText)
+  if(x>y){
+    [text,lines]=splitWordsna2(element.innerText)
     // lines=splitWordsna2(element.children[0].innerText)[1]
-    // console.log("na 2")
-    gowno=" na 2";
+    console.log("na 2");
 
     // lines=2
-    size=element.innerText.length/lines*0.9
+ 
+    size=element.innerText.length/lines*2
 
   }else{  
 
-    // console.log("na 3")
-    gowno=" na 3";
-
-    [text,lines]=splitWordsna3(element.children[0].innerText)
+    console.log("na 3");
+    [text,lines]=splitWordsna3(element.innerText)
     // lines=splitWordsna3(element.children[0].innerText)[1]
     // lines=3
-    size=element.innerText.length/lines*(x/y)+0.7
+    size=element.innerText.length/lines*0.9
 
 
   }
 
-  element.children[0].innerText=text
+  // [text,longest]=getWords(element.children[0].innerText)
+  // size=longest*0.77
+
+  element.innerText=text
   size=x/size
 
   // console.log("length: "+text.length)
-  console.log(text)
-  console.log("width: "+x)
-  console.log("height: "+y)
+  // console.log(text)
+  // console.log("width: "+x)
+  // console.log("height: "+y)
   // console.log("lines: "+lines)
   // console.log("dzieli sie: "+gowno)
   // console.log("font size: "+size)
-  console.log("-----------------------------")
   // console.log("length: "+element.innerText.length)
   // console.log("najdluzsza w lini: "+element.innerText.length/lines)
   // console.log(size)
+  // console.log("-----------------------------")
+  // console.log("-----------------------------")
+  // console.log("-----------------------------")
   
   return (size>=y*0.47?y*0.47:size)+"px"
   // return size+"px";
   // return "240px"
+}
+
+
+
+// function makeTextSquare(text) {
+//   let length = text.length; // Długość tekstu
+//   let parts = []; // Tablica na części tekstu
+//   let optimalParts = Math.ceil(Math.sqrt(length)); // Optymalna liczba części
+
+//   // Dzielimy tekst na części
+//   for (let i = 0; i < optimalParts; i++) {
+//     let start = Math.floor((i * length) / optimalParts); // Początek części
+//     let end = Math.floor(((i + 1) * length) / optimalParts); // Koniec części
+//     parts.push(text.slice(start, end)); // Dodajemy część do tablicy
+//   }
+
+//   return [parts.join(" "),parts.length]; // Łączymy części spacjami
+// }
+
+
+console.log(getWords("Porshe 911"))
+
+function getWords(text) {
+  let words = text.split(" ");
+  let maxLength = words.reduce((max, word) => Math.max(max, word.length), 0);
+  
+  return [text, maxLength];
 }
 
 function splitWordsna3(text) {
