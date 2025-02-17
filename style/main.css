@@ -8,174 +8,139 @@
 html{
     width: 100%;
     height: 100%;
+    /* min-width: 600px; */
+
 }
 body{
     display: flex;
-    margin:0px;
-
     flex-direction: row;
+    justify-content: flex-end;
+    column-gap: 38px;
+    margin:0px;
     width: 100%;
     height: 100%;
-
-    background: rgb(255,255,255);
-    background: rgb(249,228,86);
     background: linear-gradient(135deg, rgba(249,228,86,1) 0%, rgba(235,57,74,1) 50%, rgba(44,39,113,1) 100%);
 
-
-    /* background-image: url("./cool-background.svg");
-    background-repeat: no-repeat;
-    background-size: 200%;
-    background-position: right; */
-    
-
-     /* background: rgb(7,8,228);
-background: linear-gradient(135deg, rgba(7,8,228,1) 0%, rgba(28,4,97,1) 50%, rgba(89,9,151,1) 100%); */
-
-
-    /* background: linear-gradient(135deg, rgb(139, 139, 139) 0%, rgba(28,28,28,1) 100%); */
 }
+
+/* NAWIGACJA */
 nav{
     height: 100%;
-    width: 400px;
-    /* background: rgb(0,0,0);
-    background: linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(28,28,28,1) 100%); */
+    /* width: 20%; */
+    /* padding-left: 32px; */
+    /* padding-right: 32px; */
     display: flex;
-
+    /* padding-left: ; */
+    /* background-color: red; */
     align-items: center;
     justify-content: center;
+    /* background-color: rgba(255, 255, 255, 0.5); */
 }
-.hrefContainer{
+.navButtons{
     height: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-
-    /* background-color: red;s */
 }
-
-.hrefContainer a{
-    width: 100%;
-    height: 40px;
-    padding: 25px;
+.navButton{
+    /* width: 88%; */
+    width: 350px;
+    height: 100px;
+    line-height: 100px;
+    /* padding: 25px; */
     border-radius: 20px;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.5);
 
-
+    vertical-align: middle;
     font-family: outfit;
-    font-size: 35px;
-    font-weight: 600;
+    font-size: 48px;
+    font-weight: 900;
     text-decoration: none;
-    color:rgb(0, 0, 0);
+    color:rgb(255, 255, 255);
     text-transform: uppercase;
     /* border: 4px white solid; */
     text-align: center;
     transition: 250ms;
 }
-
-.hrefContainer a:hover{
+.navButton:hover{
     /* color:rgb(236, 236, 236) */
     background-color: rgba(255, 255, 255, 0.9);
 }
 
-#login{
-    position: absolute;
-
-
-    cursor: pointer;
-    width: 100px;
-    left: 10px;
-    bottom: 10px;
-}
-
-.search{
-    width: 325px;
-    position: absolute;
+/* LOGOWANIE */
+.loginContainer{
     display: flex;
-    justify-content: space-between;
-    /* background-color: red; */
-    /* width: 100px; */
-    height: 50px;
-    top: 20px;
-    /* width: 100%; */
-}
-.search img{
+    flex-direction: column;
+    align-items: center;
+
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
     cursor: pointer;
-    background-color: rgba(255, 255, 255,0.7);
-    border-radius: 20px;
 
-    padding: 10px;
-    height: calc(100% - 20px) ;
-    aspect-ratio: 1/1;
+}
+#login{
+
+    width: 90px;
+    height:90px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
 
     transition: 250ms;
-}
-.search img:hover{
-    background-color: rgba(255, 255, 255,0.8);
 
 }
-
-input{
-    border-radius: 20px;
-    border-width: 0px;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(255, 255, 255,0.7);
-
-    padding-left: 20px;
-
+.loginText{
+    margin:0px;
+    margin-top: 7px;
+    color:white;
     font-family: outfit;
-
-    font-weight: 700;
-    font-size: 16px;
-    transition: 250ms;
-
+    font-weight: 900;
+    font-size: 23px;
+    text-align: center;
+    line-height: 23px;
+}
+.loginContainer:hover #login{
+    background-color: rgba(255, 255, 255, 0.7);
 }
 
-input:focus{
-    outline: 0px;
-    background-color: rgba(255, 255, 255,0.8);
-
-}
 
 
 main{
-    /* background-color: red; */
+    /* background-color: rgba(255, 0, 0,0.5); */
     row-gap: 32px;
     column-gap: 32px;
+
     display: flex;
     align-content: flex-start;
     flex-wrap: wrap;
     justify-content: center;
-    height: calc(100% - 64px);
-    width: 1520px;
-    padding: 32px;
 
+    /* height: calc(100% - 64px); */
+    width: 76%;
+    /* width: 1463px; */
+    /* padding: 32px 32px 0px 0px; */
+    /* background-color: red; */
+    padding-top: 32px;
     overflow-y: scroll;
-
+    padding-right: 38px;
     /* background-color: red; */
 }
 
 
 .blogButton{
-    /* opacity: 0.9; */
-    /* border:5px white solid; */
     overflow: hidden;
     position: relative;
     display: flex;
     cursor: pointer;
-    /* width: fit-content; */
     height: 450px;
-    /* width: var(--button-width); */
-    /* width: 450px; */
-    /* width: min-content; */
-    /* max-width: 880px; */
+    aspect-ratio: 3/4;
+
 
     border-radius: 20px;
     justify-content: center;
     align-items: center;
 
-    /* padding: 50px; */
     transition: 250ms;
 
     background-repeat: no-repeat;
@@ -186,120 +151,72 @@ main{
     -webkit-background-clip: text;
 
 
-    /* letter-spacing: -1px; */
     color:white;
     font-family: "Outfit";
     font-weight: 900;
     text-align: center;
     text-transform: uppercase;
     margin: 0px;
-
-    /* word-break: ; */
     text-align: center;
     vertical-align: middle;
-
     line-height: 75%;
-    /* line-height: 110%; */
+
     font-size: var(--title-font-size);
 }
-
-
-
+.blogButton:hover{
+    -webkit-text-fill-color: white;
+}
+/* zdjecie w tle */
 .blogButton::before {
     background-image: inherit;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    background-repeat: inherit;
+    background-size: inherit;
+    background-position: inherit;
+
     border-radius: 20px;
-    opacity: 0;
+    transition: 250ms;
+
     background-color: rgba(255, 255, 255, 1);
+    opacity: 0;
+
     content: "";
     position: absolute;
     inset: 0;
-    /* mix-blend-mode: overlay; */
     z-index: -1;
-    transition: 250ms;
 }
+.blogButton:hover::before{
+    opacity: 1;
+}
+/* tło */
 .blogButton::after{
     border-radius: 20px;
-    /* opacity: 0; */
+    transition: 250ms;
+
     background-color: rgba(255, 255, 255, 1);
+    mix-blend-mode: overlay;
+
     content: "";
     position: absolute;
-
     inset: 0;
-    mix-blend-mode: overlay;
     z-index: -1;
-    transition: 250ms;
 }
 .blogButton:hover:after{
     opacity: 0;
 }
 
 
-.blogButton:hover::before{
-    opacity: 1;
+
+/* SCROLL */
+::-webkit-scrollbar {
+    width: 10px;
 }
-.blogButton:hover{
-    /* background-color: rgba(0, 0, 0,0.5); */
-    /* scale: var(--title-letter-spacing); */
-    /* transform: sc; */
-    /* mix-blend-mode: overlay; */
-    /* background-clip: unset; */
-    -webkit-text-fill-color: white;
-    /* -webkit-background-clip: unset; */
+::-webkit-scrollbar-track {
+    background: #ffffff00;
 }
-
-
-
-.blogTitle{
-    color:white;
-    font-family: "Outfit";
-    font-weight: 900;
-    text-align: center;
-    text-transform: uppercase;
-    width: fit-content;
-    height: 100%;
-    width: fit-content;
-    margin: 0px;
-    position: absolute;
-    /* word-break: ; */
-    text-align: center;
-    vertical-align: middle;
-
-    height: fit-content;
-    /* line-height: 75%; */
-    line-height: 150%;
-
-
-
-    /* font-size: 200px; */
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    /* background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text; */
-    /* line-height: 125px;
-    font-size: 120px; */
-
-
-    /* line-clamp: 2; */
-
-    /* filter: saturate(2); */
-    /* opacity: 0.8; */
-    
-
-    transition: 250ms;
-    /* opacity: 0.2;
-    scale: 0.8; */
-    font-size: var(--title-font-size);
-    /* width: var(--title-width); */
-
+::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.5);
+    border-radius: 5px;
 }
-
-/* .blogButton:hover .blogTitle{
-    opacity: 1;
-    scale: 1;
-    letter-spacing: var(--title-letter-spacing);
-} */
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255,255,255,0.8);
+}
