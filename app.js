@@ -5,7 +5,7 @@ let i=1;
 window.addEventListener('load', async function () {
 
   for (let element of buttons) {
-    // element.setAttribute("style",`background-image: url('./zdjecia2/img${i}.jpg');`)
+    element.setAttribute("style",`background-image: url('./zdjecia/i${i}.jpg');`)
     i++;
 
     element.style.fontSize=calculateFontSize(element)

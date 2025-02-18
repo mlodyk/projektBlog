@@ -23,7 +23,7 @@ $user_name = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : null;
         <section class="navButtons">
             <a class="navButton" href="">przeglądaj</a>
             <a class="navButton" href="">polubione</a>
-            <a class="navButton" href="">stwórz</a>
+            <a class="navButton" href="./addPost.html">stwórz</a>
         </section>
         <section class="loginContainer" onclick="redirectToLogin()">
             <img id="login" src="login.svg">
@@ -36,13 +36,7 @@ $user_name = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : null;
     </nav>
     <main>
         <section class="blogButton" >
-            AMG GT63s
-        </section>
-        <section class="blogButton" >
             Porsche 911
-        </section>
-        <section class="blogButton">
-            PENNE
         </section>
         <section class="blogButton">
             Włochy
@@ -51,27 +45,17 @@ $user_name = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : null;
             Madagaskar
         </section>
         <section class="blogButton">
-            ROLEX
-        </section>
-        <section class="blogButton">
-            OLA DZIURZYŃSKA
-        </section>
-        <section class="blogButton">
             spaghetti bolognese
         </section>
         <section class="blogButton">
-            Porsche 911
+            vogue
         </section>
         <section class="blogButton">
-            tatoo chest
-        </section> 
-        <section class="blogButton">
-            black outfit
+            siłownia
         </section>
-        <!-- <section class="blogButton">
-            <p class="blogTitle">czarny outfit y2k</p>
-
-        </section> -->
+        <section class="blogButton">
+            turcja
+        </section>
     </main>
 </body>
 </html>
