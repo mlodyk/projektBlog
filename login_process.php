@@ -16,16 +16,16 @@ if (mysqli_num_rows($wynik) > 0) {
         $_SESSION['user_id'] = $row['id'];
         $_SESSION['user_name'] = $row['nazwa'];
 
-        header("Location: index.html");
+        header("Location: index.php");
         exit();
     } else {
         $_SESSION['error'] = "Niepoprawne hasło.";
-        header("Location: login.html");
+        header("Location: login.php");
         exit();
     }
 } else {
     $_SESSION['error'] = "Nie ma takiego użytkownika.";
-    header("Location: login.html");
+    header("Location: login.php");
     exit();
 }
 
