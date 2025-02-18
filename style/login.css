@@ -27,6 +27,12 @@ body{
     
 }
 
+form{
+    display: flex;
+    align-items: center;
+    justify-content: center ;
+}
+
 .signUp{
     color:black;
     background: rgba(255, 255, 255,1);
