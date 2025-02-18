@@ -56,6 +56,12 @@ $user_name = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : null;
         <section class="blogButton">
             turcja
         </section>
+        <section class="blogButton">
+            kalistenika
+        </section>
+        <section class="blogButton">
+            p1
+        </section>
     </main>
 </body>
 </html>
