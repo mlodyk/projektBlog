@@ -1,4 +1,7 @@
-
+<?php
+session_start();
+$user_name = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : null;
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +17,9 @@
         <!-- <section class="search">
             <input type="text" placeholder="Wyszukaj...">
         </section> -->
+        <!-- <section class="logoContainer">
+            <img src="./style/logo.png" id="logo">
+        </section> -->
         <section class="navButtons">
             <a class="navButton" href="">przeglądaj</a>
             <a class="navButton" href="">polubione</a>
@@ -21,7 +27,11 @@
         </section>
         <section class="loginContainer" onclick="redirectToLogin()">
             <img id="login" src="login.svg">
-            <p class="loginText">LOGIN</p>
+            <?php if ($user_name): ?>
+                <p class="loginText"><?php echo htmlspecialchars($user_name); ?></p>
+            <?php else: ?>
+                <p class="loginText">LOGIN</p>
+            <?php endif; ?>
         </section>
     </nav>
     <main>
