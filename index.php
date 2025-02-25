@@ -1,6 +1,26 @@
 <?php
 session_start();
 $user_name = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : null;
+
+
+$servername = "localhost"; // Adres serwera MySQL (np. 127.0.0.1)
+$username = "root"; // Użytkownik bazy danych
+$password = ""; // Hasło do bazy danych
+$dbname = "projekt"; // Nazwa bazy danych
+
+// Tworzenie połączenia
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Sprawdzenie połączenia
+if ($conn->connect_error) {
+    die("Błąd połączenia: " . $conn->connect_error);
+}
+
+// Zapytanie SQL
+$sql = "SELECT * FROM posty"; // Dostosuj do swojej tabeli
+$result = $conn->query($sql);
+$conn->close();
+
 ?>
 
 <!DOCTYPE html>
@@ -35,33 +55,14 @@ $user_name = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : null;
         </section>
     </nav>
     <main>
-        <section class="blogButton" >
-            Porsche 911
-        </section>
-        <section class="blogButton">
-            Włochy
-        </section>
-        <section class="blogButton">
-            Madagaskar
-        </section>
-        <section class="blogButton">
-            spaghetti bolognese
-        </section>
-        <section class="blogButton">
-            vogue
-        </section>
-        <section class="blogButton">
-            siłownia
-        </section>
-        <section class="blogButton">
-            turcja
-        </section>
-        <section class="blogButton">
-            kalistenika
-        </section>
-        <section class="blogButton">
-            p1
-        </section>
+        <?php
+        while ($row = $result->fetch_assoc()) {
+                $imageUrl = "image.php?id=" . $row['id'];
+                echo "<section class='blogButton' style='background-image: url(\"$imageUrl\");' onclick='redirectToPost($row[id])'>
+                    {$row['tytul']}
+                </section>";
+        }   
+        ?>
     </main>
 </body>
 </html>

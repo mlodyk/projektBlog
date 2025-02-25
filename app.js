@@ -5,7 +5,7 @@ let i=1;
 window.addEventListener('load', async function () {
 
   for (let element of buttons) {
-    element.setAttribute("style",`background-image: url('./zdjecia/i${i}.jpg');`)
+    // element.setAttribute("style",`background-image: url('./zdjecia/i${i}.jpg');`)
     i++;
 
     element.style.fontSize=calculateFontSize(element)
@@ -83,4 +83,8 @@ function splitWords(text) {
 
 function redirectToLogin() {
   window.location.href = "login.php";
+}
+
+function redirectToPost(id) {
+  window.location.href = "post.php?id="+id;
 }
