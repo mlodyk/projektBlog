@@ -52,9 +52,20 @@ $conn->close();
                 echo "<p>".$row['tytul']."</p>";
                 echo "<p>".$row['tag']."</p>";
             ?>    
-            </p>
         </section>
-        <img class="mainImg" src="./zdjecia/i1.jpg">
+        <!-- <img class="mainImg" src="./zdjecia/i1.jpg"> -->
+        <?php
+        $imageUrl = "image.php?id=" . $id;
+        echo "<img class='mainImg' src='$imageUrl'>";
+
+
+    
+        ?>
+
+
+
+
+
         <!-- <section class="likeContainer">
             <img class="heart" src="serce.png">
             <p class="likesCount">2451</p>
