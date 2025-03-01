@@ -131,8 +131,7 @@ $imageUrl = "image.php?id=" . $id;
 </head>
 <body>
 
-<header>
-</header>
+
 
 <nav>
         <!-- <section class="search">
@@ -143,7 +142,7 @@ $imageUrl = "image.php?id=" . $id;
         </section> -->
         <section class="navButtons">
             <a class="navButton" href="./index.php">przeglądaj</a>
-            <a class="navButton" href="">polubione</a>
+            <a class="navButton" href="./liked.php">polubione</a>
             <a class="navButton" href="./addPost.html">stwórz</a>
         </section>
         <section class="loginContainer" onclick="redirectToLogin()">

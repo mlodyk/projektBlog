@@ -1,6 +1,7 @@
 <?php
 session_start();
 $user_name = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : null;
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : "XD";
 
 
 $servername = "localhost"; // Adres serwera MySQL (np. 127.0.0.1)
@@ -17,7 +18,10 @@ if ($conn->connect_error) {
 }
 
 // Zapytanie SQL
-$sql = "SELECT * FROM posty"; // Dostosuj do swojej tabeli
+$sql = "SELECT * FROM posty 
+JOIN polubienia ON polubienia.id_post = posty.id
+WHERE polubienia.id_user = $user_id;
+"; // Dostosuj do swojej tabeli
 $result = $conn->query($sql);
 $conn->close();
 
@@ -33,6 +37,10 @@ $conn->close();
     <script src="app.js"></script>
 </head>
 <body>
+    <header>
+        <h1>POLUBIONE</h1>
+    </header>
+    
     <nav>
         <!-- <section class="search">
             <input type="text" placeholder="Wyszukaj...">
