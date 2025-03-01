@@ -133,6 +133,28 @@ $imageUrl = "image.php?id=" . $id;
 <header>
 </header>
 
+<nav>
+        <!-- <section class="search">
+            <input type="text" placeholder="Wyszukaj...">
+        </section> -->
+        <!-- <section class="logoContainer">
+            <img src="./style/logo.png" id="logo">
+        </section> -->
+        <section class="navButtons">
+            <a class="navButton" href="./index.php">przeglądaj</a>
+            <a class="navButton" href="">polubione</a>
+            <a class="navButton" href="./addPost.html">stwórz</a>
+        </section>
+        <section class="loginContainer" onclick="redirectToLogin()">
+            <img id="login" src="login.svg">
+            <?php if ($user_name): ?>
+                <p class="loginText"><?php echo htmlspecialchars($user_name); ?></p>
+            <?php else: ?>
+                <p class="loginText">LOGIN</p>
+            <?php endif; ?>
+        </section>
+    </nav>
+
 <main>
     <section class="nameContainer">
         <p>@<?php echo htmlspecialchars($row['nazwa']); ?></p>
