@@ -127,7 +127,6 @@ $imageUrl = "image.php?id=" . $id;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BLOG - <?php echo htmlspecialchars($row['tytul']); ?></title>
     <link rel="stylesheet" href="./style/post.css">
-    <script src="post.js"></script>
 </head>
 <body>
 
@@ -157,15 +156,13 @@ $imageUrl = "image.php?id=" . $id;
     </nav>
 
 <main>
-
-
-    <section class="postContainer">
-        <section class="nameContainer">
-            <p class="title"><?php echo htmlspecialchars($row['tytul']); ?></p>
-        </section>
-        <img class='mainImg' src='<?php echo $imageUrl; ?>' alt='Obraz posta'>
-
+    <section class="nameContainer">
+        <p>@<?php echo htmlspecialchars($row['nazwa']); ?></p>
+        <p><?php echo htmlspecialchars($row['tytul']); ?></p>
+        <p><?php echo htmlspecialchars($row['tag']); ?></p>
     </section>
+
+    <img class='mainImg' src='<?php echo $imageUrl; ?>' alt='Obraz posta'>
 
     <section class="likeContainer">
         <a href="post.php?id=<?php echo $id."&like=".($isLiked?2:1); ?>">
@@ -177,14 +174,7 @@ $imageUrl = "image.php?id=" . $id;
         </a>
         <p class='likesCount'><?php echo $row['liczbaLike']; ?></p>
     </section>
-
-    <section class="textContainer">
-        <p>@<?php echo htmlspecialchars($row['nazwa']); ?></p>
-        <p><?php echo htmlspecialchars($row['tag']); ?></p>
-    </section>
 </main>
 
 </body>
 </html>
-
-
