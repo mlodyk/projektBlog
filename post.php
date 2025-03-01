@@ -1,75 +1,158 @@
 <?php
+session_start();
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : "XD";
+$user_name = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : "USERNAME";
 
-$servername = "localhost"; // Adres serwera MySQL (np. 127.0.0.1)
-$username = "root"; // Użytkownik bazy danych
-$password = ""; // Hasło do bazy danych
-$dbname = "projekt"; // Nazwa bazy danych
+$id = isset($_GET['id']) ? $_GET['id'] : 0;
 
-$id = isset($_GET['id']) ? intval($_GET['id']) : 0; // Pobranie ID obrazu z parametru GET
+$servername = "localhost"; 
+$username = "root"; 
+$password = ""; 
+$dbname = "projekt"; 
 
-
-// Tworzenie połączenia
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Sprawdzenie połączenia
+
+$isLikedSql="SELECT * from polubienia where id_post=$id and id_user=$user_id;";
+$isLikedResult = $conn->query($isLikedSql);
+
+
+$isLiked=$isLikedResult->num_rows > 0;
+
+// if ($isLiked) {
+//     echo "Polubiono";
+// } else {
+//     echo "Nie polubiono";
+// }
+
+
+// Sprawdzenie czy id jest poprawne
+if ($id <= 0) {
+    die("Nieprawidłowe ID posta.");
+}
+
+// Funkcja do wykonania aktualizacji like
+function addLike($conn, $id, $user_id) {
+    // $conn = new mysqli($servername, $username, $password, $dbname);
+    if ($conn->connect_error) {
+        die("Błąd połączenia: " . $conn->connect_error);
+    }
+    $addLikesql = "UPDATE posty SET liczbaLike = liczbaLike + 1 WHERE id = $id";
+    $addRelationsql = "INSERT INTO `polubienia` (`id_post`, `id_user`) VALUES ($id, $user_id);";
+    if ($conn->query($addLikesql) === TRUE) {
+        echo "New record created successfully";
+      } else {
+        echo "Error: " . $addLikesql . "<br>" . $conn->error;
+      }
+
+      if ($conn->query($addRelationsql) === TRUE) {
+        echo "New record created successfully";
+      } else {
+        echo "Error: " . $addRelationsql . "<br>" . $conn->error;
+      }
+}
+
+function removeLike($conn, $id, $user_id) {
+    // $conn = new mysqli($servername, $username, $password, $dbname);
+    if ($conn->connect_error) {
+        die("Błąd połączenia: " . $conn->connect_error);
+    }
+    $addLikesql = "UPDATE posty SET liczbaLike = liczbaLike - 1 WHERE id = $id";
+    $addRelationsql = "DELETE FROM `polubienia` WHERE `id_post`=$id and `id_user`=$user_id;";
+    if ($conn->query($addLikesql) === TRUE) {
+        echo "New record created successfully";
+      } else {
+        echo "Error: " . $addLikesql . "<br>" . $conn->error;
+      }
+
+      if ($conn->query($addRelationsql) === TRUE) {
+        echo "New record created successfully";
+      } else {
+        echo "Error: " . $addRelationsql . "<br>" . $conn->error;
+      }
+}
+
+// Jeśli kliknięto like (czyli mamy ?like=1 w URL), dodaj like i przekieruj z powrotem
+if (isset($_GET['like']) && $_GET['like'] == 1 && !$isLiked) {
+    addLike($conn, $id, $user_id);
+    header("Location: post.php?id=$id"); // Przekierowanie, żeby odświeżenie nie dodawało kolejnych like'ów
+    exit;
+}
+
+if (isset($_GET['like']) && $_GET['like'] == 2 && $isLiked) {
+    removeLike($conn, $id, $user_id);
+    header("Location: post.php?id=$id"); // Przekierowanie, żeby odświeżenie nie dodawało kolejnych like'ów
+    exit;
+}
+
+// Połączenie z bazą danych
+$conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Błąd połączenia: " . $conn->connect_error);
 }
 
-// Zapytanie SQL
-$sql = "SELECT tytul, zdjecie, liczbaLike, users.nazwa as nazwa, tagi.nazwa as tag from posty
-join users on users.id=posty.id_autor
-join tagi on tagi.id=posty.id_tag
-where posty.id=$id";
-$result = $conn->query($sql);
+// Pobranie danych posta
+$sql = "SELECT tytul, zdjecie, liczbaLike, users.nazwa as nazwa, tagi.nazwa as tag 
+        FROM posty
+        JOIN users ON users.id = posty.id_autor
+        JOIN tagi ON tagi.id = posty.id_tag
+        WHERE posty.id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $id);
+$stmt->execute();
+$result = $stmt->get_result();
 
 $row = $result->fetch_assoc();
+$stmt->close();
 $conn->close();
 
+if (!$row) {
+    die("Post nie istnieje.");
+}
+
+// URL do obrazka
+$imageUrl = "image.php?id=" . $id;
+
+// echo "USER ID: ".$user_id;
+// echo "USER NAME: ".$user_name;
+// echo "POST ID: ".$id;
 
 
 ?>
 
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BLOG</title>
+    <title>BLOG - <?php echo htmlspecialchars($row['tytul']); ?></title>
     <link rel="stylesheet" href="./style/post.css">
-    <script src="app.js"></script>
 </head>
 <body>
-    <header>
 
-    </header>
-    <main>
-        <section class="nameContainer">
-            <?php
-                echo "<p>@".$row['nazwa']."</p>";
-                echo "<p>".$row['tytul']."</p>";
-                echo "<p>".$row['tag']."</p>";
-            ?>    
-        </section>
-        <!-- <img class="mainImg" src="./zdjecia/i1.jpg"> -->
-        <?php
-        $imageUrl = "image.php?id=" . $id;
-        echo "<img class='mainImg' src='$imageUrl'>";
+<header>
+</header>
 
+<main>
+    <section class="nameContainer">
+        <p>@<?php echo htmlspecialchars($row['nazwa']); ?></p>
+        <p><?php echo htmlspecialchars($row['tytul']); ?></p>
+        <p><?php echo htmlspecialchars($row['tag']); ?></p>
+    </section>
 
-    
-        ?>
+    <img class='mainImg' src='<?php echo $imageUrl; ?>' alt='Obraz posta'>
 
+    <section class="likeContainer">
+        <a href="post.php?id=<?php echo $id."&like=".($isLiked?2:1); ?>">
+            <?php if ($isLiked): ?>
+                <img class="heart" src="serce2.png" alt="Like">
+            <?php else: ?>
+                <img class="heart" src="serce.png" alt="Like">
+            <?php endif; ?>
+        </a>
+        <p class='likesCount'><?php echo $row['liczbaLike']; ?></p>
+    </section>
+</main>
 
-
-
-
-        <!-- <section class="likeContainer">
-            <img class="heart" src="serce.png">
-            <p class="likesCount">2451</p>
-        </section> -->
-    </main>
 </body>
 </html>
