@@ -1,7 +1,7 @@
 <?php
 session_start();
-$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : "XD";
-$user_name = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : "USERNAME";
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 0;
+$user_name = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : null;
 
 $id = isset($_GET['id']) ? $_GET['id'] : 0;
 
@@ -18,6 +18,7 @@ $isLikedResult = $conn->query($isLikedSql);
 
 
 $isLiked=$isLikedResult->num_rows > 0;
+$isLoggedIn=$user_id!=0;
 
 // if ($isLiked) {
 //     echo "Polubiono";
@@ -125,37 +126,39 @@ $imageUrl = "image.php?id=" . $id;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BLOG - <?php echo htmlspecialchars($row['tytul']); ?></title>
+    <title><?php echo $row['tytul']; ?></title>
     <link rel="stylesheet" href="./style/post.css">
+    <link rel="stylesheet" href="./style/nav.css">
     <script src="post.js"></script>
 </head>
 <body>
 
-
-
-<nav>
-        <!-- <section class="search">
-            <input type="text" placeholder="Wyszukaj...">
-        </section> -->
-        <!-- <section class="logoContainer">
-            <img src="./style/logo.png" id="logo">
-        </section> -->
+    <nav>
         <section class="navButtons">
             <a class="navButton" href="./index.php">przeglądaj</a>
             <a class="navButton" href="./liked.php">polubione</a>
             <a class="navButton" href="./addPost.html">stwórz</a>
         </section>
-        <section class="loginContainer" onclick="redirectToLogin()">
+
+        <a class="loginContainer" href="./login.php">
             <img id="login" src="login.svg">
+            
             <?php if ($user_name): ?>
-                <p class="loginText"><?php echo htmlspecialchars($user_name); ?></p>
+                <p class="loginText"><?php echo $user_name; ?></p>
             <?php else: ?>
                 <p class="loginText">LOGIN</p>
             <?php endif; ?>
-        </section>
+        </a>
     </nav>
 
 <main>
+
+<section id="loginModal" class="loginModal" onclick="closeModal(this)">
+    <section class="loginModalContent" onclick="event.stopPropagation()">
+        <p class="loginModalText">Musisz się zalogować, aby polubić post</p>
+        <a href="./login.php" class="loginModalButton">LOGOWANIE</a>
+    </section>
+</section>
 
 
     <section class="postContainer">
@@ -167,7 +170,12 @@ $imageUrl = "image.php?id=" . $id;
     </section>
 
     <section class="likeContainer">
-        <a href="post.php?id=<?php echo $id."&like=".($isLiked?2:1); ?>">
+        <a class="likeButton" <?php 
+        if ($isLoggedIn)
+            {echo 'href="post.php?id='.$id.'&like='.($isLiked?2:1).'"';
+            } else {echo 'onclick="openModal()"';}
+                
+        ?>>
             <?php if ($isLiked): ?>
                 <img class="heart" src="serce2.png" alt="Like">
             <?php else: ?>
@@ -178,8 +186,8 @@ $imageUrl = "image.php?id=" . $id;
     </section>
 
     <section class="textContainer">
-        <p>@<?php echo htmlspecialchars($row['nazwa']); ?></p>
         <p><?php echo htmlspecialchars($row['tag']); ?></p>
+        <p>@<?php echo htmlspecialchars($row['nazwa']); ?></p>
     </section>
 </main>
 

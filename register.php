@@ -8,8 +8,8 @@
     $kwerenda = "INSERT INTO users(nazwa, haslo, email) VALUES ('$nazwa', '$haslo', '$email')";
 
     if (mysqli_query($con, $kwerenda)) {
-        header("Location: register_after.html");
-        // exit();
+        header("Location: afterRegister.html");
+        exit();
     } 
     else {
         echo "Błąd: " . mysqli_error($con);

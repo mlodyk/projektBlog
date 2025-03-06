@@ -15,13 +15,18 @@ if (isset($_SESSION['user_name'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOGIN</title>
     <link rel="stylesheet" href="./style/login.css">
+    <link rel="stylesheet" href="./style/afterRegister.css">
 </head>
 <body>   
 
 <?php if ($user_name): ?>
-    <section class="logIn">
-        <p class="title">Witaj, <?php echo htmlspecialchars($user_name); ?>!</p>
-        <a href="wyloguj.php" class="button2">Wyloguj się</a>
+    <section class="con">
+            <h1>Witaj, <?php echo $user_name;?>! </h1>
+            <p>Jesteś już zalogowany</p>
+            <section class="buttons">
+                <a  class="loginButton" href="./wyloguj.php">WYLOGUJ</a>
+                <a  class="loginButton" onclick="window.history.back();">POWRÓT</a>
+            </section>
     </section>
 <?php else: ?>
     <section class="signUp">

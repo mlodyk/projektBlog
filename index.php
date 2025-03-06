@@ -1,12 +1,22 @@
 <?php
 session_start();
 $user_name = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : null;
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 
 
-$servername = "localhost"; // Adres serwera MySQL (np. 127.0.0.1)
-$username = "root"; // Użytkownik bazy danych
-$password = ""; // Hasło do bazy danych
-$dbname = "projekt"; // Nazwa bazy danych
+
+
+
+if($user_id){
+    $isLoggedIn=1;
+}else{
+    $isLoggedIn=0;
+}
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "projekt";
 
 // Tworzenie połączenia
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -30,30 +40,28 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BLOG</title>
     <link rel="stylesheet" href="./style/main.css">
+    <link rel="stylesheet" href="./style/nav.css">
     <script src="app.js"></script>
 </head>
 <body>
     <nav>
-        <!-- <section class="search">
-            <input type="text" placeholder="Wyszukaj...">
-        </section> -->
-        <!-- <section class="logoContainer">
-            <img src="./style/logo.png" id="logo">
-        </section> -->
         <section class="navButtons">
             <a class="navButton" href="./index.php">przeglądaj</a>
             <a class="navButton" href="./liked.php">polubione</a>
             <a class="navButton" href="./addPost.html">stwórz</a>
         </section>
-        <section class="loginContainer" onclick="redirectToLogin()">
+
+        <a class="loginContainer"  href="./login.php">
             <img id="login" src="login.svg">
+            
             <?php if ($user_name): ?>
                 <p class="loginText"><?php echo htmlspecialchars($user_name); ?></p>
             <?php else: ?>
                 <p class="loginText">LOGIN</p>
             <?php endif; ?>
-        </section>
+        </a>
     </nav>
+
     <main>
         <?php
         while ($row = $result->fetch_assoc()) {
@@ -66,3 +74,15 @@ $conn->close();
     </main>
 </body>
 </html>
+
+
+
+
+        <!-- <section class="loginContainer" onclick="redirectToLogin()">
+            <img id="login" src="login.svg">
+            <?php if ($user_name): ?>
+                <p class="loginText"><?php echo htmlspecialchars($user_name); ?></p>
+            <?php else: ?>
+                <p class="loginText">LOGIN</p>
+            <?php endif; ?>
+        </section> -->

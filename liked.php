@@ -37,10 +37,12 @@ $conn->close();
     <script src="app.js"></script>
 </head>
 <body>
-    <header>
+    <header >
         <h1>POLUBIONE</h1>
     </header>
     
+    <section>
+
     <nav>
         <!-- <section class="search">
             <input type="text" placeholder="Wyszukaj...">
@@ -72,5 +74,7 @@ $conn->close();
         }   
         ?>
     </main>
+    </section>
+
 </body>
 </html>
