@@ -7,11 +7,7 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 
 
 
-if($user_id){
-    $isLoggedIn=1;
-}else{
-    $isLoggedIn=0;
-}
+$isLoggedIn=$user_id!=0;
 
 $servername = "localhost";
 $username = "root";
@@ -51,11 +47,11 @@ $conn->close();
             <a class="navButton" href="./addPost.html">stwórz</a>
         </section>
 
-        <a class="loginContainer"  href="./login.php">
+        <a class="loginContainer"  href="<?php if($isLoggedIn==1){echo "./user.php?id=".$user_id;}else{echo "./login.php";} ?>">
             <img id="login" src="login.svg">
             
             <?php if ($user_name): ?>
-                <p class="loginText"><?php echo htmlspecialchars($user_name); ?></p>
+                <p class="loginText"><?php echo $user_name; ?></p>
             <?php else: ?>
                 <p class="loginText">LOGIN</p>
             <?php endif; ?>
