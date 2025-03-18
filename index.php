@@ -4,7 +4,7 @@ $user_name = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : null;
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 
 
-
+$search = isset($_GET['search']) ? $_GET['search'] : null;
 
 
 $isLoggedIn=$user_id!=0;
@@ -22,8 +22,8 @@ if ($conn->connect_error) {
     die("Błąd połączenia: " . $conn->connect_error);
 }
 
-// Zapytanie SQL
-$sql = "SELECT * FROM posty"; // Dostosuj do swojej tabeli
+
+$sql =($search?"SELECT * from posty where posty.tytul LIKE '%$search%'":"SELECT * FROM posty"); // Dostosuj do swojej tabeli
 $result = $conn->query($sql);
 $conn->close();
 
@@ -42,8 +42,15 @@ $conn->close();
 <body>
     <nav>
         <section class="searchContainer">
-            <input class="search" type="text" placeholder="Wyszukaj">
-            <img class="searchIcon" src="search.svg">
+            <input class="search" id="searchInput" type="text" 
+            
+            <?php if($search): ?>
+                value="<?php echo $search; ?>"
+            <?php endif; ?>
+            >
+            <!-- <a class="searchIconContainer"> -->
+                <img class="searchIcon" src="./ikony/search.svg" onclick="search()">
+            <!-- </a> -->
         </section>
 
 
@@ -66,13 +73,40 @@ $conn->close();
 
     <main>
         <?php
-        while ($row = $result->fetch_assoc()) {
+        if($result->num_rows>0){?>
+
+            <section class="tags">
+                <p class="tagButton" onclick="filter(this.innerText)">SAMOCHODY</p>
+                <p class="tagButton" onclick="filter(this.innerText)">JEDZENIE</p>
+                <p class="tagButton" onclick="filter(this.innerText)">PODRÓŻE</p>
+                <p class="tagButton" onclick="filter(this.innerText)">SZTUKA</p>
+                <p class="tagButton">SPORT</p>
+                <p class="tagButton">INNE</p>
+            </section>
+
+        <?php
+            echo "<section class='blogButtonContainer'>";
+            while ($row = $result->fetch_assoc()) {
                 $imageUrl = "image.php?id=" . $row['id'];
                 echo "<section class='blogButton' style='background-image: url(\"$imageUrl\");' onclick='redirectToPost($row[id])'>
                     {$row['tytul']}
                 </section>";
-        }   
+            }   
+            echo "</section>";
+
+        }else{
+            echo "
+                <section class='noResultsContainer'>
+                    <section class='noResults'>
+                        <img src='./ikony/sadFace.gif' class='sadFace'>
+                        Niestety, nie znaleźliśmy żadnych wyników.
+                    </section>
+                </section>
+                ";
+
+        }
         ?>
+
     </main>
 </body>
 </html>

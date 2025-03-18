@@ -1,13 +1,10 @@
 let buttons=document.getElementsByClassName("blogButton");
 
-let i=1;
+
 
 window.addEventListener('load', async function () {
 
   for (let element of buttons) {
-    // element.setAttribute("style",`background-image: url('./zdjecia/i${i}.jpg');`)
-    i++;
-
     element.style.fontSize=calculateFontSize(element)
   }
 })
@@ -87,4 +84,28 @@ function redirectToLogin() {
 
 function redirectToPost(id) {
   window.location.href = "post.php?id="+id;
+}
+
+function search(){
+  let searchInput=document.getElementById("searchInput");
+
+  let x=searchInput.value
+  x=x.replaceAll(" ","")
+
+  if(x.length==0){
+    window.location.href = "index.php";
+  }else{
+    window.location.href = "index.php?search="+x;
+  }
+}
+
+
+function filter(tag){
+
+  console.log(tag)
+  // if(x.length==0){
+    // window.location.href = "index.php";
+  // }else{
+    // window.location.href = "index.php?search="+x;
+  // }
 }
