@@ -1,12 +1,22 @@
 let buttons=document.getElementsByClassName("blogButton");
 
-
+const urlParams = new URLSearchParams(window.location.search);
+let tagID=urlParams.get('tag')
 
 window.addEventListener('load', async function () {
+  
+  if(tagID){
+    let activeTag=document.getElementById(tagID)
+    activeTag.classList.replace("tagButton","activeTag");
+  }
+
+
 
   for (let element of buttons) {
     element.style.fontSize=calculateFontSize(element)
   }
+
+
 })
 
 
@@ -103,9 +113,9 @@ function search(){
 function filter(tag){
 
   console.log(tag)
-  // if(x.length==0){
-    // window.location.href = "index.php";
-  // }else{
-    // window.location.href = "index.php?search="+x;
-  // }
+  if(tag==tagID){
+    window.location.href = "index.php"
+  }else{
+    window.location.href = "index.php?tag="+tag;
+  }
 }

@@ -5,6 +5,7 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 
 
 $search = isset($_GET['search']) ? $_GET['search'] : null;
+$tag_id = isset($_GET['tag']) ? $_GET['tag'] : null;
 
 
 $isLoggedIn=$user_id!=0;
@@ -22,9 +23,18 @@ if ($conn->connect_error) {
     die("Błąd połączenia: " . $conn->connect_error);
 }
 
+if($search){
+    $sql="SELECT * from posty where posty.tytul LIKE '%$search%'";
+}elseif($tag_id){
+    $sql="SELECT * from posty where posty.id_tag = $tag_id";
+}else{
+    $sql="SELECT * from posty";
+}
 
-$sql =($search?"SELECT * from posty where posty.tytul LIKE '%$search%'":"SELECT * FROM posty"); // Dostosuj do swojej tabeli
 $result = $conn->query($sql);
+
+$tags = $conn->query("SELECT * FROM tagi");
+
 $conn->close();
 
 ?>
@@ -72,17 +82,15 @@ $conn->close();
     </nav>
 
     <main>
+        <section class="tags">
+
         <?php
+            while ($row = $tags->fetch_assoc()) {
+                echo "<p class='tagButton' id='{$row['id']}' onclick='filter(this.id)'>{$row['nazwa']}</p>";
+            }
+            echo "</section>";
         if($result->num_rows>0){?>
 
-            <section class="tags">
-                <p class="tagButton" onclick="filter(this.innerText)">SAMOCHODY</p>
-                <p class="tagButton" onclick="filter(this.innerText)">JEDZENIE</p>
-                <p class="tagButton" onclick="filter(this.innerText)">PODRÓŻE</p>
-                <p class="tagButton" onclick="filter(this.innerText)">SZTUKA</p>
-                <p class="tagButton">SPORT</p>
-                <p class="tagButton">INNE</p>
-            </section>
 
         <?php
             echo "<section class='blogButtonContainer'>";

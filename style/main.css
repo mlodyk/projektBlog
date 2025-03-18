@@ -159,11 +159,13 @@ main{
 
 .noResultsContainer{
     width: 100%;
-    height: 100%;
+    height: calc(100vh - 104px);
     
     display: flex;
     justify-content: center;
     align-items: center;
+
+    /* background-color: red; */
 }
 .noResults{
     display: flex;
@@ -175,7 +177,7 @@ main{
     align-items: center;
     
     width: 80%;
-    height: 80%;
+    height: 60%;
 
     color:white;
     font-family: "Outfit";
@@ -257,4 +259,29 @@ main{
 .tagButton:hover::before{
     background-color: rgba(255, 255, 255, 0.9);
 
+}
+
+
+.activeTag{
+
+    width: 14%;
+    height: 64px;
+    font-size: 28px;
+    line-height: 64px;
+
+    text-align: center;
+    font-weight: 900;
+    font-family: outfit;
+    color:white;
+
+    cursor: pointer;
+
+
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 1);
+    color: black;
+}
+
+.activeTag:hover{
+    background-color: rgba(255, 255, 255, 0.9);
 }
