@@ -140,7 +140,7 @@ $imageUrl = "image.php?id=" . $id;
             <a class="navButton" href="./addPost.html">stwórz</a>
         </section>
 
-        <a class="loginContainer" href="./login.php">
+        <a class="loginContainer"  href="<?php if($isLoggedIn==1){echo "./user.php?id=".$user_id;}else{echo "./login.php";} ?>">
             <img id="login" src="login.svg">
             
             <?php if ($user_name): ?>

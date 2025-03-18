@@ -29,6 +29,12 @@ if (isset($_SESSION['user_name'])) {
             </section>
     </section>
 <?php else: ?>
+
+    <a class="homeContainer"  href="./index.php">
+            <img id="home" src="./ikony/home.svg">
+            <p class="homeText">HOME</p>
+    </a>
+
     <section class="signUp">
         <p class="title">REJESTRACJA</p>
         <form action="register.php" method="POST">

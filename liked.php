@@ -34,11 +34,12 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BLOG</title>
     <link rel="stylesheet" href="./style/main.css">
+    <!-- <link rel="stylesheet" href="./style/nav.css"> -->
     <script src="app.js"></script>
 </head>
 <body>
     <header >
-        <h1>POLUBIONE</h1>
+        <!-- <h1>POLUBIONE</h1> -->
     </header>
     
     <section>

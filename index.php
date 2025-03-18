@@ -34,13 +34,19 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BLOG</title>
+    <title>Przeglądaj</title>
     <link rel="stylesheet" href="./style/main.css">
     <link rel="stylesheet" href="./style/nav.css">
     <script src="app.js"></script>
 </head>
 <body>
     <nav>
+        <section class="searchContainer">
+            <input class="search" type="text" placeholder="Wyszukaj">
+            <img class="searchIcon" src="search.svg">
+        </section>
+
+
         <section class="navButtons">
             <a class="navButton" href="./index.php">przeglądaj</a>
             <a class="navButton" href="./liked.php">polubione</a>
@@ -70,15 +76,3 @@ $conn->close();
     </main>
 </body>
 </html>
-
-
-
-
-        <!-- <section class="loginContainer" onclick="redirectToLogin()">
-            <img id="login" src="login.svg">
-            <?php if ($user_name): ?>
-                <p class="loginText"><?php echo htmlspecialchars($user_name); ?></p>
-            <?php else: ?>
-                <p class="loginText">LOGIN</p>
-            <?php endif; ?>
-        </section> -->
