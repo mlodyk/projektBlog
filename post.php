@@ -20,21 +20,12 @@ $isLikedResult = $conn->query($isLikedSql);
 $isLiked=$isLikedResult->num_rows > 0;
 $isLoggedIn=$user_id!=0;
 
-// if ($isLiked) {
-//     echo "Polubiono";
-// } else {
-//     echo "Nie polubiono";
-// }
 
-
-// Sprawdzenie czy id jest poprawne
 if ($id <= 0) {
     die("Nieprawidłowe ID posta.");
 }
 
-// Funkcja do wykonania aktualizacji like
 function addLike($conn, $id, $user_id) {
-    // $conn = new mysqli($servername, $username, $password, $dbname);
     if ($conn->connect_error) {
         die("Błąd połączenia: " . $conn->connect_error);
     }
@@ -54,7 +45,6 @@ function addLike($conn, $id, $user_id) {
 }
 
 function removeLike($conn, $id, $user_id) {
-    // $conn = new mysqli($servername, $username, $password, $dbname);
     if ($conn->connect_error) {
         die("Błąd połączenia: " . $conn->connect_error);
     }
@@ -73,27 +63,24 @@ function removeLike($conn, $id, $user_id) {
       }
 }
 
-// Jeśli kliknięto like (czyli mamy ?like=1 w URL), dodaj like i przekieruj z powrotem
 if (isset($_GET['like']) && $_GET['like'] == 1 && !$isLiked) {
     addLike($conn, $id, $user_id);
-    header("Location: post.php?id=$id"); // Przekierowanie, żeby odświeżenie nie dodawało kolejnych like'ów
+    header("Location: post.php?id=$id");
     exit;
 }
 
 if (isset($_GET['like']) && $_GET['like'] == 2 && $isLiked) {
     removeLike($conn, $id, $user_id);
-    header("Location: post.php?id=$id"); // Przekierowanie, żeby odświeżenie nie dodawało kolejnych like'ów
+    header("Location: post.php?id=$id");
     exit;
 }
 
-// Połączenie z bazą danych
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Błąd połączenia: " . $conn->connect_error);
 }
 
-// Pobranie danych posta
-$sql = "SELECT tytul, zdjecie, liczbaLike, users.nazwa as nazwa, tagi.nazwa as tag 
+$sql = "SELECT tytul, zdjecie, liczbaLike, id_autor, id_tag ,users.nazwa as nazwa, tagi.nazwa as tag 
         FROM posty
         JOIN users ON users.id = posty.id_autor
         JOIN tagi ON tagi.id = posty.id_tag
@@ -186,8 +173,8 @@ $imageUrl = "image.php?id=" . $id;
     </section>
 
     <section class="textContainer">
-        <p><?php echo htmlspecialchars($row['tag']); ?></p>
-        <p>@<?php echo htmlspecialchars($row['nazwa']); ?></p>
+        <?php echo "<a href='index.php?tag=".$row['id_tag']."'>".$row['tag']."</a>" ?>
+        <?php echo "<a href='user.php?id=".$row['id_autor']."'>@".$row['nazwa']."</a>" ?>
     </section>
 </main>
 

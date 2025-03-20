@@ -111,6 +111,9 @@ main{
 
 .textContainer{
     position: absolute;
+    display: flex;
+    flex-direction: column;
+
     /* background-color: red; */
     right: 20px;
     bottom: 20px;
@@ -123,14 +126,17 @@ main{
     margin:0px;
 
 }
-.textContainer p{
+.textContainer a{
+    text-decoration: none;
+
     cursor: pointer;
     margin:0px;
     transition: 250ms;
+    color:white;
 
 }
 
-.textContainer p:hover{
+.textContainer a:hover{
     letter-spacing: 5px;
 }
 

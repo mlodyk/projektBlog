@@ -3,16 +3,22 @@ session_start();
 $user_name = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : null;
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 
-$servername = "localhost"; // Adres serwera MySQL (np. 127.0.0.1)
-$username = "root"; // Użytkownik bazy danych
-$password = ""; // Hasło do bazy danych
-$dbname = "projekt"; // Nazwa bazy danych
+$userPageId = isset($_GET['id']) ? $_GET['id'] : null;
+if(!$userPageId){
+    die("Nieprawidłowe ID użytkownika.");
+}
+
+$ownPage=($user_id==$userPageId);
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "projekt";
 
 $isLoggedIn=$user_id!=0;
 
-if($isLoggedIn){
-   
 
+// Tworzenie połączenia
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Sprawdzenie połączenia
@@ -22,12 +28,16 @@ if ($conn->connect_error) {
 
 // Zapytanie SQL
 $sql = "SELECT * FROM posty 
-JOIN polubienia ON polubienia.id_post = posty.id
-WHERE polubienia.id_user = $user_id;
-"; // Dostosuj do swojej tabeli
+WHERE id_autor = $userPageId;";
 $result = $conn->query($sql);
+
+$userSql="SELECT * FROM users WHERE id=$userPageId";
+$user = $conn->query($userSql)->fetch_assoc();
+
+// $user = $conn->query($userSql);
+
+
 $conn->close();
-}
 
 ?>
 
@@ -48,6 +58,9 @@ $conn->close();
             <a class="navButton" href="./index.php">przeglądaj</a>
             <a id="liked" class="navButton" href="./liked.php">polubione</a>
             <a class="navButton" href="./addPost.html">stwórz</a>
+            <?php if($ownPage): ?>
+                <a class="navButton" href="./wyloguj.php">wyloguj się</a>
+            <?php endif; ?>
         </section>
 
         <a class="loginContainer"  href="<?php if($isLoggedIn==1){echo "./user.php?id=".$user_id;}else{echo "./login.php";} ?>">
@@ -62,35 +75,30 @@ $conn->close();
     </nav>
 
     <main>
-        <?php if($isLoggedIn): ?>
-            <h1 id="likedTitle" class="likedTitle">POLUBIONE</h1>
-            <?php
-            if($result->num_rows>0){
-                echo "<section class='blogButtonContainer'>";
-                while ($row = $result->fetch_assoc()) {
-                    $imageUrl = "image.php?id=" . $row['id'];
-                    echo "<section class='blogButton' style='background-image: url(\"$imageUrl\");' onclick='redirectToPost($row[id])'>
-                        {$row['tytul']}
-                    </section>";
-                }   
-                echo "</section>";
+        <h1 id="likedTitle" class="likedTitle"><?php echo $user['nazwa']?></h1>
 
-            }else{
-                echo "
-                    <section class='noResultsContainer'>
-                        <section class='noResults'>
-                            <img src='./ikony/sadFace.gif' class='sadFace'>
-                            Niestety, nie znaleźliśmy żadnych wyników.
-                        </section>
+        <?php
+        if($result->num_rows>0){
+            echo "<section class='blogButtonContainer'>";
+            while ($row = $result->fetch_assoc()) {
+                $imageUrl = "image.php?id=" . $row['id'];
+                echo "<section class='blogButton' style='background-image: url(\"$imageUrl\");' onclick='redirectToPost($row[id])'>
+                    {$row['tytul']}
+                </section>";
+            }   
+            echo "</section>";
+
+        }else{
+            echo "
+                <section class='noResultsContainer'>
+                    <section class='noResults'>
+                        <img src='./ikony/sadFace.gif' class='sadFace'>
+                        Niestety, nie znaleźliśmy żadnych wyników.
                     </section>
-                    ";
-
-            }
-            ?>
-        <?php else: ?>
-            <h2 class="notLoggedInfo">Musisz się zalogować, aby wyświetlić polubione posty</h2>
-        <?php endif; ?>
-        
+                </section>
+                ";
+        }
+        ?>
 
     </main>
 </body>

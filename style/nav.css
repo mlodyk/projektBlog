@@ -15,11 +15,13 @@ nav{
     /* background-color: rgba(255, 255, 255, 0.5); */
 }
 .navButtons{
-    height: 40%;
+    height: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+
+    gap: 5%;
 }
 .navButton{
     /* width: 88%; */
@@ -28,7 +30,10 @@ nav{
     line-height: 100px;
     /* padding: 25px; */
     border-radius: 20px;
+    /* background-color: rgba(255, 255, 255, 0.5); */
     background-color: rgba(255, 255, 255, 0.5);
+
+
     /* mix-blend-mode: overlay; */
 
     vertical-align: middle;

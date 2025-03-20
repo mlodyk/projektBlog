@@ -1,5 +1,6 @@
 let buttons=document.getElementsByClassName("blogButton");
 
+
 const urlParams = new URLSearchParams(window.location.search);
 let tagID=urlParams.get('tag')
 
@@ -9,7 +10,6 @@ window.addEventListener('load', async function () {
     let activeTag=document.getElementById(tagID)
     activeTag.classList.replace("tagButton","activeTag");
   }
-
 
 
   for (let element of buttons) {
