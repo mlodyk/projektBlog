@@ -15,7 +15,6 @@ $username = "root";
 $password = "";
 $dbname = "projekt";
 
-// Tworzenie połączenia
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Sprawdzenie połączenia
@@ -67,7 +66,7 @@ $conn->close();
         <section class="navButtons">
             <a class="navButton" href="./index.php">przeglądaj</a>
             <a class="navButton" href="./liked.php">polubione</a>
-            <a class="navButton" href="./addPost.html">stwórz</a>
+            <a class="navButton" href="./addPost.php">stwórz</a>
         </section>
 
         <a class="loginContainer"  href="<?php if($isLoggedIn==1){echo "./user.php?id=".$user_id;}else{echo "./login.php";} ?>">

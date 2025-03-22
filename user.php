@@ -57,7 +57,8 @@ $conn->close();
         <section class="navButtons">
             <a class="navButton" href="./index.php">przeglądaj</a>
             <a id="liked" class="navButton" href="./liked.php">polubione</a>
-            <a class="navButton" href="./addPost.html">stwórz</a>
+            <a class="navButton" href="./addPost.php">stwórz</a>
+
             <?php if($ownPage): ?>
                 <!-- <a class="navButton" href="">usuń posty</a> -->
                 <a class="navButton" href="./wyloguj.php">wyloguj się</a>

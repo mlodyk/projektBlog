@@ -25,15 +25,18 @@ function calculateFontSize(element){
   y=element.offsetHeight
 
   let longest
+  let wordCount
   let size
   let text
 
-  [text,longest]=splitWords(element.innerText)
+  [text,longest,wordCount]=splitWords(element.innerText)
 
   element.innerText=text
+  // size=x/longest+23
   size=x/longest+23
-  
-  return (size>=y*0.47?y*0.47:size)+"px"
+
+  return size+"px"
+  // return (size>=y*0.47?y*0.47:size)+"px"
 }
 
 
@@ -41,6 +44,7 @@ function splitWords(text) {
   let words = text.split(" ");
   let transformedWords = [];
   let maxLength = 0;
+  let wordCount = 0;
 
   function splitIntoThree(word) {
     let len = word.length;
@@ -64,6 +68,7 @@ function splitWords(text) {
     if (words.length === 1) {
       if (word.length < 4) {
         maxLength = Math.max(maxLength, word.length);
+        wordCount += 1;
         return word;
       } else {
         parts = splitIntoThree(word);
@@ -71,6 +76,7 @@ function splitWords(text) {
     } else {
       if (word.length < 4) {
         maxLength = Math.max(maxLength, word.length);
+        wordCount += 1;
         return word;
       } else {
         parts = splitIntoTwo(word);
@@ -80,12 +86,14 @@ function splitWords(text) {
     parts.forEach(part => {
       maxLength = Math.max(maxLength, part.length);
     });
-    
+
+    wordCount += parts.length;
     return parts.join(" ");
   });
 
-  return [transformedWords.join(" "), maxLength];
+  return [transformedWords.join(" "), maxLength, wordCount];
 }
+
 
 
 function redirectToLogin() {
@@ -112,7 +120,6 @@ function search(){
 
 function filter(tag){
 
-  console.log(tag)
   if(tag==tagID){
     window.location.href = "index.php"
   }else{
