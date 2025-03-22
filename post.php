@@ -143,7 +143,9 @@ $imageUrl = "image.php?id=" . $id;
 <section id="loginModal" class="loginModal" onclick="closeModal(this)">
     <section class="loginModalContent" onclick="event.stopPropagation()">
         <p class="loginModalText">Musisz się zalogować, aby polubić post</p>
+        <!-- <a href="./login.php?lastPage=true" class="loginModalButton">LOGOWANIE</a> -->
         <a href="./login.php" class="loginModalButton">LOGOWANIE</a>
+
     </section>
 </section>
 
@@ -164,9 +166,9 @@ $imageUrl = "image.php?id=" . $id;
                 
         ?>>
             <?php if ($isLiked): ?>
-                <img class="heart" src="serce2.png" alt="Like">
+                <img class="heart" src="./ikony/serce2.png" alt="Like">
             <?php else: ?>
-                <img class="heart" src="serce.png" alt="Like">
+                <img class="heart" src="./ikony/serce.png" alt="Like">
             <?php endif; ?>
         </a>
         <p class='likesCount'><?php echo $row['liczbaLike']; ?></p>

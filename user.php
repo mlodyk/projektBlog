@@ -59,6 +59,7 @@ $conn->close();
             <a id="liked" class="navButton" href="./liked.php">polubione</a>
             <a class="navButton" href="./addPost.html">stwórz</a>
             <?php if($ownPage): ?>
+                <!-- <a class="navButton" href="">usuń posty</a> -->
                 <a class="navButton" href="./wyloguj.php">wyloguj się</a>
             <?php endif; ?>
         </section>
@@ -75,7 +76,7 @@ $conn->close();
     </nav>
 
     <main>
-        <h1 id="likedTitle" class="likedTitle"><?php echo $user['nazwa']?></h1>
+        <h1 id="likedTitle" class="likedTitle">@<?php echo $user['nazwa']?></h1>
 
         <?php
         if($result->num_rows>0){

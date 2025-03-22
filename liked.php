@@ -3,10 +3,10 @@ session_start();
 $user_name = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : null;
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 
-$servername = "localhost"; // Adres serwera MySQL (np. 127.0.0.1)
-$username = "root"; // Użytkownik bazy danych
-$password = ""; // Hasło do bazy danych
-$dbname = "projekt"; // Nazwa bazy danych
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "projekt";
 
 $isLoggedIn=$user_id!=0;
 

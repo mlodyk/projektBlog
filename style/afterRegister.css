@@ -16,68 +16,62 @@ body{
 }
 
 .con{
-    max-width: 90vw;
-    max-height: 90vh;
+    position: relative;
     width: 70%;
+    min-width: 600px;
+    max-height: 90%;
     aspect-ratio: 2.5/1;
     display: flex;
     flex-direction: column;
     justify-content:center;
     align-items: center;
 
-    
     border-radius: 20px;
 
-    background-color: white;
-
+    background-color: rgba(255, 255, 255,1);
+    
     font-family: outfit;
 
-    /* gap: 5%; */
+    gap: 5%;
 }
 
-.con h1{
+.title{
     margin:0px;
 
     /* margin-top: 40px; */
     font-size: 5vw;
-    font-weight: 600;
-}
-.con p{  
-    width: 60%;
-    text-align: center;
-    font-size: 2vw;
-    font-weight: 400;
-    margin: 0px;
+    font-weight: 700;
 }
 
 .buttons{
-    margin-top: 30px;
+    /* margin-top: 30px; */
 
     display: flex;
     justify-content: center;
     /* background-color: red; */
     width: 100%;
-    height: 25%;
-    gap:5%
+    height: 150px;
+    line-height: 100%;
+
+    min-height: 40px;
+
+    gap:30px;
 }
 
-.loginButton{
-    margin-top: 30px;
+.button{
 
-    width: 70%;
-    height: 25%;
+    width: 40%;
+    height: 100;
     border-radius: 20px;
        
-
     cursor: pointer;
-    background: linear-gradient(135deg, rgba(249,228,86,1) 0%, rgba(235,57,74,1) 50%, rgba(44,39,113,1) 100%);
+
     color: white;
     text-align: center;
-    font-size: 5vw;
-    line-height: 150%;
+    font-size: 60px;
+    line-height: 150px;
 
-    vertical-align: middle;;
-    font-weight: 900;
+    font-weight: 800;
 
     text-decoration: none;
 
@@ -85,25 +79,22 @@ body{
     transition-duration: 0.25s;
 }
 
-.buttons a{
-    height: 100%;
-    width: 30%;
-    font-size: 4vw;
-    line-height: 175%;
-
-    padding: 0px 30px;
+.button:hover{
+    width: 45%;
 }
 
-.buttons a:first-of-type{
-    background: rgb(131, 131, 131);
+.button:first-child{
+    background: linear-gradient(135deg, rgba(249,228,86,1) 0%, rgba(235,57,74,1) 100%);
 }
 
-.loginButton:hover{
-
-    width: 90%;
+.button:last-child{
+    background: linear-gradient(135deg, rgba(235,57,74,1) 0%, rgba(44,39,113,1) 100%); 
 }
 
 
-.buttons a:hover{
-    width: 50%;
+p{
+    font-size: 40px;
+    font-weight: 500;
+    margin: 0px;
+    text-align: center;
 }
