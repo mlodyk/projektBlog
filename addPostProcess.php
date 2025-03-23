@@ -1,6 +1,6 @@
 <?php
 session_start();
-$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 0;
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 $conn = new mysqli("localhost", "root", "", "projekt");
 
 // Sprawdzenie połączenia
@@ -11,7 +11,7 @@ if ($conn->connect_error) {
 // Pobranie danych z formularza
 $title = $_POST['title'] ?? null;
 $tagId = $_POST['tagId'] ?? null;
-$autorId = $user_id??0;
+$autorId = $user_id??null;
 $image = null;
 
 // Sprawdzenie poprawności danych

@@ -37,8 +37,8 @@ function addPost() {
     .then(response => response.json())
     .then(data => {
         if (data.status === "success") {
-            // console.log("Dodano post o ID:", data.postId);
-            // alert(`Post dodany! ID: ${data.postId}`);
+
+
             document.getElementById("zobaczButton").href = `post.php?id=${data.postId}`;
 
             openModal()
@@ -48,10 +48,6 @@ function addPost() {
         }
     })
     .catch(error => console.error('Błąd:', error));
-
-
-    // console.log(data)
-    // openModal()
 }
 
 
