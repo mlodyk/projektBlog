@@ -57,9 +57,9 @@ $conn->close();
                 value="<?php echo $search; ?>"
             <?php endif; ?>
             >
-            <!-- <a class="searchIconContainer"> -->
-                <img class="searchIcon" src="./ikony/search.svg" onclick="search()">
-            <!-- </a> -->
+            <section class="searchIconContainer" onclick="search()">
+                <img class="searchIcon" src="./ikony/search.svg" >
+            </section>
         </section>
 
 

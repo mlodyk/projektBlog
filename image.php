@@ -11,8 +11,8 @@ if ($row) {
     // header("Content-Type: image/jpeg");
     echo $row['zdjecie']; // Wyświetlenie obrazu
 } 
-// else {
-//     http_response_code(404);
-//     echo "Obraz nie znaleziony.";
-// }
+else {
+    http_response_code(404);
+    echo "Obraz nie znaleziony.";
+}
 ?>

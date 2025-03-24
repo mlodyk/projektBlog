@@ -26,10 +26,13 @@ main{
     justify-content: center;
     align-items: center;
     gap:25px;
+
+    /* background-color: green; */
+
+    /* padding-right: 38px; */
 }
 
 .inputContainer{
-    /* justify-self: center; */
     display: flex;
     height: fit-content;
     width: 1100px;

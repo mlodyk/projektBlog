@@ -88,7 +88,13 @@ $conn->close();
             }
             ?>
         <?php else: ?>
-            <h2 class="notLoggedInfo">Musisz się zalogować, aby wyświetlić polubione posty</h2>
+            <!-- <section class="loginMainContainer"> -->
+                <section class="loginMainContent">
+                    <p class="loginMainText">Musisz się zalogować, aby zobaczyć polubione posty</p>
+                    <a href="./login.php" class="loginMainButton">LOGOWANIE</a>
+                </section>
+            <!-- </section> -->
+
         <?php endif; ?>
         
 

@@ -3,7 +3,9 @@ session_start();
 $user_name = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : null;
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 
-$isLoggedIn=$user_id!=0;
+// $isLoggedIn=$user_id??null;
+$isLoggedIn=$user_id!=null;
+
 
 $servername = "localhost";
 $username = "root";
@@ -50,6 +52,8 @@ $conn->close();
         </a>
     </nav>
     <main>
+        <?php if ($isLoggedIn): ?>
+
         <section id="addedModal" class="addedModal" onclick="closeModal(this)">
             <section class="addedModalContent" onclick="event.stopPropagation()">
                 <p class="addedModalText">Dodano Post!</p>
@@ -59,16 +63,16 @@ $conn->close();
             </section>
         </section>  
 
-
-
         <section class="inputContainer">
             <h1 class="titleText">TYTUŁ</h1>
             <input id="titleInput" class="titleInput" type="text" placeholder="(Maksymalnie 20 liter)">
         </section>
+
         <section class="inputContainer">
             <h1 class="titleText">ZDJĘCIE</h1>
             <input id="imageInput" class="imageInput" type="file">
         </section>
+
         <section class="inputContainer">
             <h1 class="titleText">WYBIERZ TAG</h1>
             <section class="tags">
@@ -79,7 +83,18 @@ $conn->close();
             ?>
             </section>
         </section>
-        <button id="submitButton" class="submitButton" type="button" onclick="addPost()">WYŚLIJ</button> 
+
+        <button id="submitButton" class="submitButton" type="button" onclick="addPost()">DODAJ</button> 
+
+        <?php else: ?>
+            <section class="loginMainContainer">
+                <section class="loginMainContent">
+                    <p class="loginMainText">Musisz się zalogować, aby dodać post</p>
+                    <a href="./login.php" class="loginMainButton">LOGOWANIE</a>
+                </section>
+            </section>
+
+        <?php endif; ?>
     </main>
 </body>
 </html>
