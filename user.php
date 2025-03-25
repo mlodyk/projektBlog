@@ -47,12 +47,22 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Przeglądaj</title>
-    <link rel="stylesheet" href="./style/main.css">
     <link rel="stylesheet" href="./style/nav.css">
-    <script src="app.js"></script>
+    <!-- <script src="app.js"></script> -->
+    <script src="ownAccount.js"></script>
+
+    <?php if($ownPage): ?>
+        <link rel="stylesheet" href="./style/ownAccout.css">
+
+    <?php else: ?>
+        <link rel="stylesheet" href="./style/main.css">
+    <?php endif; ?>
 </head>
 <body>
     <nav>
+        <?php if($ownPage): ?>
+                <section id="deleteButton" class="deleteButton" onclick="toggleRemoving()">usuń posty</section>
+        <?php endif; ?>
 
         <section class="navButtons">
             <a class="navButton" href="./index.php">przeglądaj</a>
@@ -73,7 +83,7 @@ $conn->close();
                 <?php endif; ?>
             </a>
             <?php if($ownPage): ?>
-                <a class="settingsButton" href="./wyloguj.php">wyloguj się</a>
+                <a class="signoutButton" href="./wyloguj.php">wyloguj się</a>
             <?php endif; ?>
         </section>
 
@@ -87,7 +97,7 @@ $conn->close();
             echo "<section class='blogButtonContainer'>";
             while ($row = $result->fetch_assoc()) {
                 $imageUrl = "image.php?id=" . $row['id'];
-                echo "<section class='blogButton' style='background-image: url(\"$imageUrl\");' onclick='redirectToPost($row[id])'>
+                echo "<section class='defaultBlogButton blogButton' style='background-image: url(\"$imageUrl\");' onclick='redirectToPost($row[id],this)'>
                     {$row['tytul']}
                 </section>";
             }   

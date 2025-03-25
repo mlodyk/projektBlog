@@ -123,19 +123,21 @@ $imageUrl = "image.php?id=" . $id;
     <nav>
         <section class="navButtons">
             <a class="navButton" href="./index.php">przeglądaj</a>
-            <a class="navButton" href="./liked.php">polubione</a>
+            <a id="liked" class="navButton" href="./liked.php">polubione</a>
             <a class="navButton" href="./addPost.php">stwórz</a>
         </section>
 
-        <a class="loginContainer"  href="<?php if($isLoggedIn==1){echo "./user.php?id=".$user_id;}else{echo "./login.php";} ?>">
-            <img id="login" src="login.svg">
-            
-            <?php if ($user_name): ?>
-                <p class="loginText"><?php echo $user_name; ?></p>
-            <?php else: ?>
-                <p class="loginText">LOGIN</p>
-            <?php endif; ?>
-        </a>
+        <section class="accountContainer">
+            <a class="loginContainer"  href="<?php if($isLoggedIn==1){echo "./user.php?id=".$user_id;}else{echo "./login.php";} ?>">
+                <img id="login" src="login.svg">
+                
+                <?php if ($user_name): ?>
+                    <p class="loginText"><?php echo $user_name; ?></p>
+                <?php else: ?>
+                    <p class="loginText">LOGIN</p>
+                <?php endif; ?>
+            </a>
+        </section>
     </nav>
 
 <main>

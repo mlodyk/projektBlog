@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+*{
+    user-select: none;
+
+}
+
+html{
+    width: 100%;
+    height: 100%;
+}
+body{
+    display: flex;
+    flex-direction: row;
+
+    margin:0px;
+    width: 100%;
+    height: 100%;
+
+    background: linear-gradient(135deg, rgba(249,228,86,1) 0%, rgba(235,57,74,1) 50%, rgba(44,39,113,1) 100%);
+}
+
+
+main{
+    margin-left: auto;
+
+    width: 76%;
+
+    padding-right: 38px;
+/* 
+    background-color: pink; */
+
+    overflow-y: scroll;
+}
+
+.blogButtonContainer{
+    width: 100%;
+    row-gap: 32px;
+    column-gap: 32px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-content: flex-start;
+    /* align-items: center; */
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.defaultBlogButton{
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    cursor: pointer;
+    height: 450px;
+    aspect-ratio: 3/4;
+
+
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+
+    transition: 250ms;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+
+
+    color:white;
+    font-family: "Outfit";
+    font-weight: 900;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 0px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 75%;
+}
+.blogButton:hover{
+    -webkit-text-fill-color: white;
+}
+
+/* zdjecie w tle */
+.blogButton::before {
+    background-image: inherit;
+    background-repeat: inherit;
+    background-size: inherit;
+    background-position: inherit;
+
+    border-radius: 20px;
+    transition: 250ms;
+
+    background-color: rgba(255, 255, 255, 1);
+    opacity: 0;
+
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+}
+.blogButton:hover::before{
+    opacity: 1;
+}
+/* tło */
+.defaultBlogButton::after{
+    border-radius: 20px;
+    transition: 250ms;
+    /* background-color: rgba(255, 255, 255, 1); */
+
+    background-color: rgba(255, 255, 255, 0.5);
+    mix-blend-mode: overlay;
+
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+}
+.defaultBlogButton:hover:after{
+    opacity: 0;
+}
+
+/* REMOVE--------------------- */
+
+.removeBlogButton:hover{
+    -webkit-text-fill-color: red;
+}
+
+/* zdjecie w tle */
+.removeBlogButton::before {
+
+    border-radius: 20px;
+    transition: 250ms;
+
+    background-color: white;
+    opacity: 0;
+
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+}
+.removeBlogButton:hover::before{
+    opacity: 1;
+}
+
+
+
+
+
+.noResultsContainer{
+    width: 100%;
+    height: calc(100vh - 104px);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* background-color: red; */
+}
+.noResults{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    
+    justify-content: center;
+    align-items: center;
+    
+    width: 80%;
+    height: 60%;
+
+    color:white;
+    font-family: "Outfit";
+    font-weight: 900;
+    text-align: center;
+    font-size: 60px;
+
+}
+.noResults::before{
+    border-radius: 20px;
+    transition: 250ms;
+    /* background-color: rgba(255, 255, 255, 1); */
+
+    background-color: rgba(255, 255, 255, 0.5);
+    mix-blend-mode: overlay;
+
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+}
+
+
+.likedTitle{
+    margin:0px;
+    margin-top: 20px;
+
+    font-size: 70px;
+    font-family: outfit;
+    font-weight: 900;
+    text-align: center;
+    color:white;
+
+    width: 100%;
+
+    /* background-color: red; */
+}
+
+
+/* SCROLL */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #ffffff00;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.5);
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255,255,255,0.8);
+}
