@@ -17,13 +17,16 @@ nav{
     /* background-color: blue; */
 }
 .navButtons{
-    height: 50%;
+    /* height: 10%; */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    gap: 5%;
+    margin-top: 100px;
+
+    gap: 20px;
+    margin-bottom: 20px;
 }
 .navButton{
     width: 350px;
@@ -52,12 +55,12 @@ nav{
     flex-direction: column;
     align-items: center;
 
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
+
     cursor: pointer;
 
     text-decoration: none;
+
+    /* background-color: red; */
 
 }
 #login{
@@ -173,7 +176,7 @@ nav{
     height: 100%;
 
     display: flex;
-    justify-content: right;
+    justify-content: center;
     align-items: center;
 
     /* margin-right: 38px; */
@@ -240,4 +243,41 @@ nav{
     color:white;
 
     width: 55%;
+}
+
+
+.accountContainer{
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    gap: 20px;
+    display: flex;
+    /* flex-direction: column; */
+    align-items: start;
+    justify-content: center;
+    /* position: absolute; */
+    /* bottom: 150px; */
+    /* right: 20px; */
+
+    /* text-decoration: none; */
+
+    /* background-color: red; */
+
+}
+
+.settingsButton{
+    width: 200px;
+    height:90px;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 20px;
+    
+    line-height: 90px;
+    text-decoration: none;
+    color:black;
+    font-family: outfit;
+    font-weight: 600;
+    font-size: 30px;
+    text-align: center;
+
+    transition: 250ms;
 }

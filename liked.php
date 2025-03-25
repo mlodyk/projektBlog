@@ -61,8 +61,9 @@ $conn->close();
         </a>
     </nav>
 
-    <main>
         <?php if($isLoggedIn): ?>
+        <main>
+
             <h1 id="likedTitle" class="likedTitle">POLUBIONE</h1>
             <?php
             if($result->num_rows>0){
@@ -87,17 +88,18 @@ $conn->close();
 
             }
             ?>
+        </main>
+
         <?php else: ?>
-            <!-- <section class="loginMainContainer"> -->
+            <section class="loginMainContainer">
                 <section class="loginMainContent">
                     <p class="loginMainText">Musisz się zalogować, aby zobaczyć polubione posty</p>
                     <a href="./login.php" class="loginMainButton">LOGOWANIE</a>
                 </section>
-            <!-- </section> -->
+            </section>
 
         <?php endif; ?>
         
 
-    </main>
 </body>
 </html>

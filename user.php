@@ -58,22 +58,25 @@ $conn->close();
             <a class="navButton" href="./index.php">przeglądaj</a>
             <a id="liked" class="navButton" href="./liked.php">polubione</a>
             <a class="navButton" href="./addPost.php">stwórz</a>
+        </section>
 
+
+        <section class="accountContainer">
+            <a class="loginContainer"  href="<?php if($isLoggedIn==1){echo "./user.php?id=".$user_id;}else{echo "./login.php";} ?>">
+                <img id="login" src="login.svg">
+                
+                <?php if ($isLoggedIn): ?>
+                    <p class="loginText"><?php echo $user_name; ?></p>
+
+                <?php else: ?>
+                    <p class="loginText">LOGIN</p>
+                <?php endif; ?>
+            </a>
             <?php if($ownPage): ?>
-                <!-- <a class="navButton" href="">usuń posty</a> -->
-                <a class="navButton" href="./wyloguj.php">wyloguj się</a>
+                <a class="settingsButton" href="./wyloguj.php">wyloguj się</a>
             <?php endif; ?>
         </section>
 
-        <a class="loginContainer"  href="<?php if($isLoggedIn==1){echo "./user.php?id=".$user_id;}else{echo "./login.php";} ?>">
-            <img id="login" src="login.svg">
-            
-            <?php if ($user_name): ?>
-                <p class="loginText"><?php echo $user_name; ?></p>
-            <?php else: ?>
-                <p class="loginText">LOGIN</p>
-            <?php endif; ?>
-        </a>
     </nav>
 
     <main>
