@@ -98,7 +98,6 @@ if (!$row) {
     die("Post nie istnieje.");
 }
 
-// URL do obrazka
 $imageUrl = "image.php?id=" . $id;
 
 // echo "USER ID: ".$user_id;

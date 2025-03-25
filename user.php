@@ -18,15 +18,12 @@ $dbname = "projekt";
 $isLoggedIn=$user_id!=0;
 
 
-// Tworzenie połączenia
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Sprawdzenie połączenia
 if ($conn->connect_error) {
     die("Błąd połączenia: " . $conn->connect_error);
 }
 
-// Zapytanie SQL
 $sql = "SELECT * FROM posty 
 WHERE id_autor = $userPageId;";
 $result = $conn->query($sql);
