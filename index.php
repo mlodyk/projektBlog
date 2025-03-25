@@ -106,7 +106,6 @@ $conn->close();
             echo "
                 <section class='noResultsContainer'>
                     <section class='noResults'>
-                        <img src='./ikony/sadFace.gif' class='sadFace'>
                         Niestety, nie znaleźliśmy żadnych wyników.
                     </section>
                 </section>
